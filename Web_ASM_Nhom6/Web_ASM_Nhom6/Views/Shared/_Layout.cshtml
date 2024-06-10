@@ -15,7 +15,7 @@
             <div class="col-md-12 row">
                 <div class="col-md-9 mx-auto d-flex">
                     <a class="nav-link active text-white" aria-current="page" href="#">Kênh Người Bán</a>
-                    <a class="nav-link active text-white" aria-current="page" href="#">| Trở Thành Người Bán</a>
+                    <a class="nav-link active text-white" asp-area="" asp-controller="Restaurant" asp-action="Add">| Trở Thành Người Bán</a>
                     <a class="nav-link active text-white" aria-current="page" href="#">| Điều Khoản Dịch Vụ</a>
                 </div>
                 <div class="col-md-3 mx-auto d-flex">
@@ -58,9 +58,12 @@
                         <!--Icon Cart-->
                         <!--Icon User-->
                         <div class="col-md-3 m-3 mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="65" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                            </svg>
+                            <a asp-area="" asp-controller="User" asp-action="Thongtin">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="65" fill="#000000" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                </svg>
+                            </a>
+
                         </div>
                         <!--Icon User-->
                     </div>
@@ -79,7 +82,7 @@
                                 <a class="nav-link active text-white mx-4" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white mx-4" href="#">Giới Thiệu</a>
+                                <a class="nav-link text-white mx-4" asp-area="" asp-controller="Home" asp-action="Gioithieu">Giới Thiệu</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link text-white mx-4 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -204,5 +207,17 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script type="text/javascript">
+        (function (d, m) {
+            var kommunicateSettings =
+                { "appId": "18149a2835fe51448d0096bd2d429765", "popupWidget": true, "automaticChatOpenOnNavigation": true };
+            var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+            s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+            var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+            window.kommunicate = m; m._globals = kommunicateSettings;
+        })(document, window.kommunicate || {});
+        /* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+    </script>
 </body>
 </html>

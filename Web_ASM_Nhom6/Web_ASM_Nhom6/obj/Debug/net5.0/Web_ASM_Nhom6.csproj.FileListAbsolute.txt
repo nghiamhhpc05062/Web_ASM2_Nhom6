@@ -180,3 +180,7 @@ D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\C
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\Delete.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\Edit.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\GetCategory.cshtml.g.cs
+D:\c#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Home\Gioithieu.cshtml.g.cs
+D:\c#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\User\Thongtin.cshtml.g.cs
+D:\c#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Restaurant\Add.cshtml.g.cs
+D:\c#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\User\ChangePassword.cshtml.g.cs

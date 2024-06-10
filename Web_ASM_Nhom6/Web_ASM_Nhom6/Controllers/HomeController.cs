@@ -45,6 +45,13 @@ namespace Web_ASM_Nhom6.Controllers
             return View(products);
         }
 
+        public IActionResult GioiThieu()
+        {
+            return View();
+        }
+
+        
+
 
         //public ViewResult Information() => View();
         //[HttpPost]
