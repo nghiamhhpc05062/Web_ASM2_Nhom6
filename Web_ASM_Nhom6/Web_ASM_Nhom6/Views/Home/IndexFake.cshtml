@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Web_ASM_Nhom6.Models.Restaurant>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!-- Thông báo chưa đăng nhập -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Vui lòng đăng nhập tài khoản !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">đóng</button>
+                <button type="button" class="btn btn-primary">Đăng nhập</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Thông báo chưa đăng nhập -->
+
+<div class="container">
+    <hr / class="border-4 bg-dark">
+    <h3 class="mb-5">tìm kiếm nhiều nhất </h3>
+    <div class="bg-body-secondary col-md-12 p-3 row">
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">canh chua</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">thịt kho</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">cơm chiên</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">gỏi cuốn</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh mì</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bắp nướng</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh xèo</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh mì cari</a>
+    </div>
+
+    <br />
+
+    <hr / class="border-4 bg-dark">
+    <h3 class="mb-5">danh mục </h3>
+
+    <div class="bg-body-secondary col-md-12 p-1 row">
+        @foreach (var item in Model.Take(8))
+        {
+            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                @Html.DisplayFor(modelitem => item.Category.Name)
+            </button>
+        }
+    </div>
+
+
+    <br />
+
+    <hr / class="border-4 bg-dark">
+    <h3 class="mb-5">sản phẩm </h3>
+
+    <div class="bg-body-secondary col-md-12 p-3 row">
+
+        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
+            <button id="btngroupdroptp" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
+                thành phố
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btngroupdroptp">
+                <li><a class="dropdown-item" href="#">cần thơ</a></li>
+                <li><a class="dropdown-item" href="#">hồ chí minh</a></li>
+                <li><a class="dropdown-item" href="#">đà nẵng</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
+            <button id="btngroupdropkhuvuc" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
+                khu vực
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btngroupdropkhuvuc">
+                <li><a class="dropdown-item" href="#">dropdown link</a></li>
+                <li><a class="dropdown-item" href="#">dropdown link</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
+            <button id="btngroupdropphanloai" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
+                phân loại
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btngroupdropphanloai">
+                <li><a class="dropdown-item" href="#">dropdown link</a></li>
+                <li><a class="dropdown-item" href="#">dropdown link</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <br />
+
+
+    <!--Restaurant-->
+
+
+    <div id="carouselexamplecaptions" class="carousel col-md-12 row">
+        <div class="carousel-inner row">
+            <div class="carousel-item active">
+                <div class="col-md-12 row m-3">
+                    @foreach (var item in Model.Take(15))
+                    {
+                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
+                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
+                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
+                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-12 row m-auto">
+                    @foreach (var item in Model.Skip(15).Take(30))
+                    {
+                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
+                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
+                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
+                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="carousel-item bg-secondary">
+                <div class="col-md-12 bg-secondary row m-auto">
+                    @foreach (var item in Model.Skip(30).Take(45))
+                    {
+                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
+                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
+                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
+                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="carousel-item bg-secondary">
+            </div>
+            <div class="carousel-item bg-secondary">
+            </div>
+        </div>
+
+        <div class="carousel col-md-12 mt-3">
+            <button class="carousel-control-prev bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">previous</span>
+            </button>
+            <div class="m-auto text-center">
+                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="slide 1">1</button>
+                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="1" aria-label="slide 2">2</button>
+                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="2" aria-label="slide 3">3</button>
+                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="3" aria-label="slide 4">4</button>
+                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="4" aria-label="slide 5">5</button>
+            </div>
+            <button class="carousel-control-next bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">next</span>
+            </button>
+        </div>
+
+    </div>
+
+
+
+</div>

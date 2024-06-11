@@ -148,7 +148,6 @@ D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\zh-Hans\Micro
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Home\Product.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
@@ -178,10 +177,9 @@ D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\C
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\Delete.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\Edit.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\GetCategory.cshtml.g.cs
-D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Home\Information.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Product\Add.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Product\Delete.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Product\Edit.cshtml.g.cs
 D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\GetID.cshtml.g.cs
-D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Category\Lay.cshtml.g.cs
-D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Product\GetIDMenuOfProduct.cshtml.g.cs
+D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Home\IndexFake.cshtml.g.cs
+D:\C#5\Web_ASM2_Nhom6\Web_ASM_Nhom6\Web_ASM_Nhom6\obj\Debug\net5.0\Razor\Views\Product\Information.cshtml.g.cs

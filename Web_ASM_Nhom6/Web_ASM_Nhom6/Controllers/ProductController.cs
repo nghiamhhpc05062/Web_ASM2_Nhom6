@@ -61,90 +61,7 @@ namespace Web_ASM_Nhom6.Controllers
                 products = products.Where(p => p.Price <= maxPrice.Value).ToList();
             }
 
-            // Get distinct MenuIds from the list of products
-            var menuIds = products.Select(p => p.MenuId).Distinct().ToList();
-
-            // Fetch Menu information based on MenuIds
-            List<Menu> menus = new List<Menu>();
-
-            using (var httpClient = new HttpClient())
-            {
-                foreach (var menuId in menuIds)
-                {
-                    var menuResponse = await httpClient.GetAsync($"{urlmenu}/{menuId}");
-                    string menuApiResponse = await menuResponse.Content.ReadAsStringAsync();
-                    var menu = JsonConvert.DeserializeObject<Menu>(menuApiResponse);
-                    menus.Add(menu);
-                }
-            }
-
-            // Get distinct RestaurantIds from the list of menus
-            var restaurantIds = menus.Select(m => m.RestaurantId).Distinct().ToList();
-
-            // Fetch Restaurant information based on RestaurantIds
-            List<Restaurant> restaurants = new List<Restaurant>();
-
-            using (var httpClient = new HttpClient())
-            {
-                foreach (var restaurantId in restaurantIds)
-                {
-                    var restaurantResponse = await httpClient.GetAsync($"{urlrestaurant}/{restaurantId}");
-                    string restaurantApiResponse = await restaurantResponse.Content.ReadAsStringAsync();
-                    var restaurant = JsonConvert.DeserializeObject<Restaurant>(restaurantApiResponse);
-                    restaurants.Add(restaurant);
-                }
-            }
-
-            // Add city and address information to the products
-            foreach (var product in products)
-            {
-                var menu = menus.FirstOrDefault(m => m.MenuId == product.MenuId);
-                if (menu != null)
-                {
-                    var restaurant = restaurants.FirstOrDefault(r => r.RestaurantId == menu.RestaurantId);
-                    if (restaurant != null)
-                    {
-                        var a  = restaurants.FirstOrDefault(r => r.RestaurantId == menu.RestaurantId);
-                        if (restaurant != null)
-                        {
-
-                        }
-                    }
-                }
-            }
-
             return View(products);
-        }
-
-
-
-        [HttpGet("id")]
-        public async Task<IActionResult> GetIDMenuOfProduct(int id)
-        {
-            List<Product> products = new List<Product>();
-
-
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(url);
-
-
-            string apiResponse = await response.Content.ReadAsStringAsync();
-
-            products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
-
-
-
-            var result = new List<Product>();
-
-            foreach (var item in products)
-            {
-                if (item.MenuId == id)
-                {
-                    result.Add(item);
-                }
-            }
-
-            return View(result);
         }
 
 
@@ -155,11 +72,6 @@ namespace Web_ASM_Nhom6.Controllers
         {
             return View();
         }
-
-
-
-
-
         [HttpPost]
         public async Task<IActionResult> Add(Product product)
         {
@@ -176,29 +88,6 @@ namespace Web_ASM_Nhom6.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-
-
-
-
-        //[HttpPost]
-        //public async Task<IActionResult> Add(Product product)
-        //{
-        //    Product products = new Product();
-
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        StringContent content = new StringContent(JsonConvert.SerializeObject(product),
-        //            Encoding.UTF8, "application/json");
-        //        using (var response = await httpClient.PostAsync(url, content))
-        //        {
-        //            string apiRes = await response.Content.ReadAsStringAsync();
-        //            products = JsonConvert.DeserializeObject<Product>(apiRes);
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-        //}
 
 
 
@@ -291,10 +180,26 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+
+        //Information thông tin sản phẩm
+        public ViewResult Information() => View();
+        [HttpGet]
+        public async Task<IActionResult> Information(int id)
+        {
+            Product getidproduct = new Product();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(($"{url}/{id}")))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        getidproduct = JsonConvert.DeserializeObject<Product>(apiResponse);
+                    }
+                }
+            }
+            return View(getidproduct);
+        }
 
 
     }

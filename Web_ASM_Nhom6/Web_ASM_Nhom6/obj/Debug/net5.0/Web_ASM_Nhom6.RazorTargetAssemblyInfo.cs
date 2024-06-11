@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web_ASM_Nhom6")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+332f30858a92aec6cbb43b93f75e3f71a6fb1a77")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fdb3e9515edeb665c526eda8e4b31abfc46a75e")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web_ASM_Nhom6.Views")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 

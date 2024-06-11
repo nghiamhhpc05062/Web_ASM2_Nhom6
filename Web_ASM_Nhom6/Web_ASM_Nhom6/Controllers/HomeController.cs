@@ -23,62 +23,45 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
-        private string url = "http://localhost:29015/api/Product";
+        private string url = "http://localhost:29015/api/Restaurant";
 
         private string urlCategory = "http://localhost:29015/api/Category";
+
+
+        //trang chủ
         [HttpGet]
-        public async Task<IActionResult> Index(string searchQuery)
+        public async Task<IActionResult> Index()
         {
-            List<Product> products = new List<Product>();
+            List<Restaurant> restaurants = new List<Restaurant>();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(url))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                    restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(apiResponse);
                 }
             }
-
-            List<Category> categories = new List<Category>();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(urlCategory))
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    categories = JsonConvert.DeserializeObject<List<Category>>(apiResponse);
-                }
-            }
+                    string categoryApiResponse = await response.Content.ReadAsStringAsync();
+                    var categories = JsonConvert.DeserializeObject<List<Category>>(categoryApiResponse);
 
-
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                products = products.Where(p => p.Name.Contains(searchQuery)).ToList();
-            }
-
-            return View(products);
-        }
-
-
-        //GetID
-        public ViewResult Information() => View();
-        [HttpGet]
-        public async Task<IActionResult> Information(int id)
-        {
-            Product getidproduct = new Product();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(($"{url}/{id}")))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    foreach (var restaurant in restaurants)
                     {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        getidproduct = JsonConvert.DeserializeObject<Product>(apiResponse);
+                        var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
+                        if (category != null)
+                        {
+                            restaurant.Category = category;
+                        }
                     }
                 }
             }
-            return View(getidproduct);
+
+            return View(restaurants);
         }
 
         public IActionResult Privacy()
@@ -86,6 +69,43 @@ namespace Web_ASM_Nhom6.Controllers
             return View();
         }
 
+
+
+        //Trang chủ Fake
+        [HttpGet]
+        public async Task<IActionResult> IndexFake()
+        {
+            List<Restaurant> restaurants = new List<Restaurant>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(apiResponse);
+                }
+            }
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlCategory))
+                {
+                    string categoryApiResponse = await response.Content.ReadAsStringAsync();
+                    var categories = JsonConvert.DeserializeObject<List<Category>>(categoryApiResponse);
+
+                    foreach (var restaurant in restaurants)
+                    {
+                        var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
+                        if (category != null)
+                        {
+                            restaurant.CategoryId = category.CategoryId;
+                        }
+                    }
+                }
+            }
+
+            return View(restaurants);
+        }
 
 
 
