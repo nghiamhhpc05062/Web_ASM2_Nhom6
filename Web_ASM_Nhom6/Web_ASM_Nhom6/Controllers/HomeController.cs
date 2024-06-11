@@ -24,7 +24,7 @@ namespace Web_ASM_Nhom6.Controllers
 
 
         private string url = "http://localhost:29015/api/Restaurant";
-
+        private string urlMenu = "http://localhost:29015/api/Menu";
         private string urlCategory = "http://localhost:29015/api/Category";
 
 
@@ -62,11 +62,6 @@ namespace Web_ASM_Nhom6.Controllers
             }
 
             return View(restaurants);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         public IActionResult Gioithieu()
@@ -111,7 +106,19 @@ namespace Web_ASM_Nhom6.Controllers
 
         }
 
-
+        public async Task<IActionResult> Restaurant(int id)
+        {
+            Restaurant restaurant = new Restaurant();
+            using (var httpclient = new HttpClient())
+            {
+                using (var response = await httpclient.GetAsync($"{url}/{id}"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    restaurant = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
+                }
+            };
+            return View(restaurant);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

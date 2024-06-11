@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Web_ASM_Nhom6.Models
 {
     public class User
@@ -8,7 +10,10 @@ namespace Web_ASM_Nhom6.Models
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string role { get; set; }
         public bool IsDelete { get; set; }
-        public string role {  get; set; }
+        public ICollection<Review> Reviews { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
