@@ -1,37 +1,4 @@
 ﻿
-//using Newtonsoft.Json;
-//using System.Collections.Generic;
-//using System.Net.Http;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Security.Policy;
-//using Web_ASM_Nhom6.Models;
-
-//namespace Web_ASM_Nhom6.Controllers
-//{
-//    public class UserController : Controller
-//    {
-//        // URL của API
-//        private readonly string url = "http://localhost:29015/api/User";
-//        [HttpGet]
-//        public async Task<IActionResult> Thongtin()
-//        {
-//            List<User> products = new List<User>();
-
-//            using (var httpClient = new HttpClient())
-//            {
-//                using (var response = await httpClient.GetAsync(url))
-//                {
-//                    string apiResponse = await response.Content.ReadAsStringAsync();
-//                    products = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-//                }
-//            }
-
-//            return View(products);
-//        }
-//    }
-//}
-
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
