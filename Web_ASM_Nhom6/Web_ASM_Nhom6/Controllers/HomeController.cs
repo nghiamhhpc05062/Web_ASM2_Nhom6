@@ -22,82 +22,91 @@ namespace Web_ASM_Nhom6.Controllers
             _logger = logger;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
-        private string url = "http://localhost:29015/api/Product";
+        private string url = "http://localhost:29015/api/Restaurant";
+
+        private string urlCategory = "http://localhost:29015/api/Category";
+
+
+        //trang chủ
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Product> products = new List<Product>();
+            List<Restaurant> restaurants = new List<Restaurant>();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(url))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                    restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(apiResponse);
                 }
             }
 
-            return View(products);
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlCategory))
+                {
+                    string categoryApiResponse = await response.Content.ReadAsStringAsync();
+                    var categories = JsonConvert.DeserializeObject<List<Category>>(categoryApiResponse);
+
+                    foreach (var restaurant in restaurants)
+                    {
+                        var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
+                        if (category != null)
+                        {
+                            restaurant.Category = category;
+                        }
+                    }
+                }
+            }
+
+            return View(restaurants);
         }
 
-        public IActionResult GioiThieu()
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        
 
 
-        //public ViewResult Information() => View();
-        //[HttpPost]
-        //public async Task<IActionResult> Information(int id)
-        //{
-        //    Product products = new Product();
+        //Trang chủ Fake
+        [HttpGet]
+        public async Task<IActionResult> IndexFake()
+        {
+            List<Restaurant> restaurants = new List<Restaurant>();
 
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("http://localhost:29015/api/Products" + id))
-        //        {
-        //            if (response.IsSuccessStatusCode)
-        //            {
-        //                string apiResponse = await response.Content.ReadAsStringAsync();
-        //                products = JsonConvert.DeserializeObject<Product>(apiResponse);
-        //            }
-        //            else
-        //            {
-        //                ViewBag.StatusCode = response.StatusCode;
-        //            }
-        //        }
-        //    }
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(apiResponse);
+                }
+            }
 
-        //    return View(products);
-        //}
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlCategory))
+                {
+                    string categoryApiResponse = await response.Content.ReadAsStringAsync();
+                    var categories = JsonConvert.DeserializeObject<List<Category>>(categoryApiResponse);
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Information(int id)
-        //{
-        //    List<Product> products = new List<Product>();
+                    foreach (var restaurant in restaurants)
+                    {
+                        var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
+                        if (category != null)
+                        {
+                            restaurant.Category = category;
+                        }
+                    }
+                }
+            }
 
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("http://localhost:29015/api/Products/" + id))
-        //        {
-        //            if (response.IsSuccessStatusCode)
-        //            {
-        //                string apiResponse = await response.Content.ReadAsStringAsync();
-        //                products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
-        //            }
-        //        }
-        //    }
+            return View(restaurants);
 
-        //    return View(products);
-        //}
-
+        }
 
 
 

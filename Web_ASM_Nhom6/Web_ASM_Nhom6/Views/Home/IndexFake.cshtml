@@ -1,35 +1,51 @@
-@model IEnumerable<Web_ASM_Nhom6.Models.Restaurant>
+﻿@model IEnumerable<Web_ASM_Nhom6.Models.Restaurant>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
+<!-- Thông báo chưa đăng nhập -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Vui lòng đăng nhập tài khoản !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">đóng</button>
+                <button type="button" class="btn btn-primary">Đăng nhập</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Thông báo chưa đăng nhập -->
 <div style="min-height:6rem">
-
 </div>
 <div class="container mt-5">
-    <hr / class="border-4 bg-dark">
-    <h2 class="text-danger mb-5 font-weight-bold">
-        Tìm kiếm nhiều nhất </h3>
+    <hr class="border-4 bg-dark">
+    <h2 class="text-danger mb-5 font-weight-bold">Tìm kiếm nhiều nhất </h2>
     <div class="bg-body-secondary col-md-12 p-3 row">
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=canh chua">canh chua</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=thịt kho">thịt kho</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=cơm chiên">cơm chiên</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=gỏi cuốn">gỏi cuốn</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">bánh mì</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">bắp nướng</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">canh chua</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">thịt kho</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">cơm chiên</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">gỏi cuốn</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh mì</a>
+        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bắp nướng</a>
     </div>
 
     <br />
 
-    <hr class="border-4 bg-dark"/>
-    <h2 class="text-danger mb-5 font-weight-bold">
-        Danh mục </h3>
+    <hr class="border-4 bg-dark">
+    <h2 class="text-danger mb-5 font-weight-bold">Danh mục </h2>
 
     <div class="bg-body-secondary col-md-12 p-1 row">
-        @foreach (var item in Model.Take(5))
+        @foreach (var item in Model.Take(8))
         {
-            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:320px">
+            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:320px" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 @Html.DisplayFor(modelitem => item.Category.Name)
             </button>
         }
@@ -38,9 +54,8 @@
 
     <br />
 
-    <hr class="border-4 bg-dark"/>
-    <h2 class="text-danger mb-5 font-weight-bold">
-        Sản phẩm </h3>
+    <hr class="border-4 bg-dark">
+    <h3 class="text-danger mb-5 font-weight-bold">Cửa hàng </h3>
 
     <div class="bg-body-secondary col-md-12 p-3 row">
 
@@ -90,9 +105,9 @@
                     {
                         <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <h5 class="text-left" >@Html.DisplayFor(modelitem => item.Name)</h5>
+                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
@@ -105,7 +120,7 @@
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
                             <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
@@ -118,7 +133,7 @@
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
                             <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
@@ -148,7 +163,5 @@
         </div>
 
     </div>
-
-
 
 </div>
