@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\views\\product\\information.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\views\\product\\information.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -17,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\views\\home\\indexfake.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\views\\home\\indexfake.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|solutionrelative:web_asm_nhom6\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EA62273-F614-443F-838D-3145580DC453}|Web_ASM_Nhom6\\Web_ASM_Nhom6.csproj|d:\\c#5\\web_asm2_nhom6\\web_asm_nhom6\\web_asm_nhom6\\views\\category\\getcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -138,7 +138,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Information.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Product\\Information.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Product\\Information.cshtml",
@@ -159,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Controllers\\HomeController.cs",
@@ -167,12 +167,11 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Controllers\\HomeController.cs",
               "ViewState": "AQIAAEMAAAAAAAAAAAAqwFkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T13:08:42.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T13:08:42.532Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Controllers\\ProductController.cs",
@@ -180,25 +179,24 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Controllers\\ProductController.cs",
               "ViewState": "AQIAAK4AAAAAAAAAAAAqwMAAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T10:42:26.611Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T10:42:26.611Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Controllers\\CategoryController.cs",
               "ToolTip": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "Web_ASM_Nhom6\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAQwJMAAAANAAAA",
+              "ViewState": "AQIAADsAAAAAAAAAAAAAAFAAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-07T13:53:42.066Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Product\\Add.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Product\\Add.cshtml",
@@ -206,12 +204,11 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Product\\Add.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-08T00:11:31.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T00:11:31.902Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Product\\Index.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Product\\Index.cshtml",
@@ -219,25 +216,24 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Product\\Index.cshtml",
               "ViewState": "AQIAAA8AAAAAAAAAAAAAACAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-07T13:20:16.573Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-07T13:20:16.573Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Home\\Index.cshtml",
               "ToolTip": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAAAE0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-07T13:11:33.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Shared\\_Layout.cshtml",
@@ -245,12 +241,11 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AQIAAE4AAAAAAAAAAAAAAGwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-05T10:39:47.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T10:39:47.076Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "IndexFake.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Home\\IndexFake.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Home\\IndexFake.cshtml",
@@ -258,12 +253,11 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Home\\IndexFake.cshtml",
               "ViewState": "AQIAACoAAAAAAAAAAAAAAEIAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-10T15:52:03.735Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T15:52:03.735Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Product\\Edit.cshtml",
@@ -271,12 +265,11 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Product\\Edit.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-08T00:12:42.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T00:12:42.183Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\C#5\\Web_ASM2_Nhom6\\Web_ASM_Nhom6\\Web_ASM_Nhom6\\Views\\Product\\Delete.cshtml",
               "RelativeDocumentMoniker": "Web_ASM_Nhom6\\Views\\Product\\Delete.cshtml",
@@ -284,8 +277,7 @@
               "RelativeToolTip": "Web_ASM_Nhom6\\Views\\Product\\Delete.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-08T00:12:08.053Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T00:12:08.053Z"
             },
             {
               "$type": "Document",
