@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Web_ASM_Nhom6.props" />
-</Project>
