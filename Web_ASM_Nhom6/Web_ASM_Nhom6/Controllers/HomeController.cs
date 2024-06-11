@@ -98,13 +98,14 @@ namespace Web_ASM_Nhom6.Controllers
                         var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
                         if (category != null)
                         {
-                            restaurant.CategoryId = category.CategoryId;
+                            restaurant.Category = category;
                         }
                     }
                 }
             }
 
             return View(restaurants);
+
         }
 
 

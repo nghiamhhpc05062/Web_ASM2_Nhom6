@@ -4,7 +4,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-
 <!-- Thông báo chưa đăng nhập -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -24,10 +23,11 @@
     </div>
 </div>
 <!-- Thông báo chưa đăng nhập -->
-
-<div class="container">
+<div style="min-height:6rem">
+</div>
+<div class="container mt-5">
     <hr / class="border-4 bg-dark">
-    <h3 class="mb-5">tìm kiếm nhiều nhất </h3>
+    <h2 class="text-danger mb-5 font-weight-bold">Tìm kiếm nhiều nhất </h2>
     <div class="bg-body-secondary col-md-12 p-3 row">
         <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">canh chua</a>
         <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">thịt kho</a>
@@ -35,19 +35,17 @@
         <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">gỏi cuốn</a>
         <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh mì</a>
         <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bắp nướng</a>
-        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh xèo</a>
-        <a class="btn btn-danger col-md-2 m-auto text-white" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">bánh mì cari</a>
     </div>
 
     <br />
 
     <hr / class="border-4 bg-dark">
-    <h3 class="mb-5">danh mục </h3>
+    <h2 class="text-danger mb-5 font-weight-bold">Danh mục </h2>
 
     <div class="bg-body-secondary col-md-12 p-1 row">
         @foreach (var item in Model.Take(8))
         {
-            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:320px" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 @Html.DisplayFor(modelitem => item.Category.Name)
             </button>
         }
@@ -57,7 +55,7 @@
     <br />
 
     <hr / class="border-4 bg-dark">
-    <h3 class="mb-5">sản phẩm </h3>
+    <h3 class="text-danger mb-5 font-weight-bold">Cửa hàng </h3>
 
     <div class="bg-body-secondary col-md-12 p-3 row">
 
@@ -107,9 +105,9 @@
                     {
                         <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
@@ -120,9 +118,9 @@
                     {
                         <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
@@ -133,9 +131,9 @@
                     {
                         <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
                             <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
+                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-outline-danger" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
+                            <a class="btn btn-danger col-md-8 m-auto text-white" style="max-width: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal">đặt hàng</a>
                         </div>
                     }
                 </div>
