@@ -18,12 +18,12 @@
             <div class="col-md-12 row">
                 <div class="col-md-9 mx-auto d-flex">
                     <a class="nav-link active text-white" aria-current="page" href="#">Kênh Người Bán</a>
-                    <a class="nav-link active text-white" asp-area="" asp-controller="Restaurant" asp-action="Add">| Trở Thành Người Bán</a>
+                    <a class="nav-link active text-white"  asp-controller="Restaurant" asp-action="Add">| Trở Thành Người Bán</a>
                     <a class="nav-link active text-white" aria-current="page" href="#">| Điều Khoản Dịch Vụ</a>
                 </div>
                 <div class="col-md-3 mx-auto d-flex">
                     <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
-                    <a class="nav-link text-white" asp-area="" asp-controller="Login" asp-action="Login">| Đăng nhập</a>
+                    <a class="nav-link text-white"  asp-controller="Login" asp-action="Login">| Đăng nhập</a>
                 </div>
             </div>
             <div class="col-md-12 row">
@@ -54,7 +54,7 @@
                     <div class="col-md-12 row">
                         <!--Icon Cart-->
                         <div class="col-md-12 m-3 mt-2">
-                            <a asp-area="" asp-controller="Home" asp-action="Index" class="text-dark">
+                            <a  asp-controller="Home" asp-action="Index" class="text-dark">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z" />
                                 </svg>
@@ -63,7 +63,7 @@
                         <!--Icon Cart-->
                         <!--Icon User-->
                         <div class="col-md-3 m-3 mt-2" >
-                            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-dark">
+                            <a  asp-controller="Home" asp-action="Privacy" class="text-dark">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="65" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg>
@@ -75,7 +75,6 @@
                 </div>
             </div>
             <!--nav-->
-
             <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-danger">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,17 +83,17 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav mx-auto fs-4">
                             <li class="nav-item">
-                                <a class="nav-link active text-white mx-4" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
+                                <a class="nav-link active text-white mx-4" aria-current="page"  asp-controller="Home" asp-action="Index">Trang Chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white mx-4" asp-area="" asp-controller="Home" asp-action="Gioithieu">Giới Thiệu</a>
+                                <a class="nav-link text-white mx-4"  asp-controller="Home" asp-action="Gioithieu">Giới Thiệu</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link text-white mx-4 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Sản Phẩm
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Danh Mục Sản Phẩm</a></li>
+                                    <li><a class="dropdown-item"  asp-controller="Product" asp-action="Index">Danh Mục Sản Phẩm</a></li>
                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>

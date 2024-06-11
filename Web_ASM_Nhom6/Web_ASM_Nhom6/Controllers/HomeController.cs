@@ -69,7 +69,10 @@ namespace Web_ASM_Nhom6.Controllers
             return View();
         }
 
-
+        public IActionResult Gioithieu()
+        {
+            return View();
+        }
 
         //Trang chủ Fake
         [HttpGet]
