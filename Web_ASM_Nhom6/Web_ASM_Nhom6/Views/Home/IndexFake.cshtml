@@ -23,9 +23,8 @@
     </div>
 </div>
 <!-- Thông báo chưa đăng nhập -->
-<div style="min-height:6rem">
-</div>
-<div class="container mt-5">
+
+<div class="container">
     <hr / class="border-4 bg-dark">
     <h2 class="text-danger mb-5 font-weight-bold">Tìm kiếm nhiều nhất </h2>
     <div class="bg-body-secondary col-md-12 p-3 row">
@@ -61,7 +60,7 @@
 
         <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
             <button id="btngroupdroptp" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-                thành phố
+                Thành phố
             </button>
             <ul class="dropdown-menu" aria-labelledby="btngroupdroptp">
                 <li><a class="dropdown-item" href="#">cần thơ</a></li>
@@ -71,22 +70,14 @@
         </div>
 
         <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
-            <button id="btngroupdropkhuvuc" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-                khu vực
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="btngroupdropkhuvuc">
-                <li><a class="dropdown-item" href="#">dropdown link</a></li>
-                <li><a class="dropdown-item" href="#">dropdown link</a></li>
-            </ul>
-        </div>
-
-        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
             <button id="btngroupdropphanloai" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-                phân loại
+                Phân loại
             </button>
             <ul class="dropdown-menu" aria-labelledby="btngroupdropphanloai">
-                <li><a class="dropdown-item" href="#">dropdown link</a></li>
-                <li><a class="dropdown-item" href="#">dropdown link</a></li>
+                @foreach (var item in Model)
+                {
+                    <li><a class="dropdown-item" href="#">@Html.DisplayFor(modelitem => item.Category.Name)</a></li>
+                }
             </ul>
         </div>
     </div>

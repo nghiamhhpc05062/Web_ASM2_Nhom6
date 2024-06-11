@@ -3,9 +3,11 @@
 
 
 <div class="container">
+
+
     <div class="col-md-12 row container">
         <div class="col-md-4">
-            <img class="p-1 m-auto" src="@Html.DisplayFor(model => model.Image)" alt="Alternate Text" width="330px" height="370px" />
+            <img class="p-1 m-auto" src="@Html.DisplayFor(item => item.Image)" alt="Alternate Text" width="330px" height="370px" />
         </div>
         <div class="col-md-8">
             <p class="text-primary fs-5">Địa chỉ >> <span>aaa</span> </p>
@@ -28,7 +30,7 @@
                 </svg>
             </div>
             <h3>@Html.DisplayFor(model => model.Name)</h3>
-            <p>Thời gian hoạt động : @Html.DisplayFor(model => model.Price)</p>
+            <p>Thời gian hoạt động : 8:30 - 21:30 </p>
             <p>Giá sản phẩm : @Html.DisplayFor(model => model.Price)0đ</p>
             <hr / class="border-3 bg-dark">
             <div class="col-md-12 row">
@@ -37,101 +39,19 @@
                     <span class="text-danger">0.0% phí dịch vụ</span>
                     <button class="btn btn-warning mt-1">Quán đối tác</button>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <p class="fs-6">Dịch vụ bởi</p>
                     <span class="text-danger">VFOOD</span>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-danger col-md-12 m-1 text-white">Đặt hàng</a>
+                    <a class="btn btn-success col-md-12 m-1  text-white">Xem cửa hàng</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-
-<div class="container-fluid bg-body-secondary vh-100 mt-5">
-    <div class="col-md-8 row mx-auto">
-        <div class="col-md-2 bg-light text-center p-3">
-            <h6>Menu</h6>
-            <h6>Combo</h6>
-            <h6>Nước Uống</h6>
-        </div>
-        <div class="col-md-6 bg-light m-1">
-            <div class="col-md-12 mx-auto bg-white rounded-pill mt-4">
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input class="form-control rounded-pill mt-1 border-0" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-danger rounded-pill mx-1 mb-1 mt-1" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-3 bg-light">
-            a
-        </div>
-    </div>
 </div>
 
 
 
-
-
-
-
-@*
-
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MenuId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDelete)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDelete)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
- *@
