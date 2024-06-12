@@ -58,7 +58,8 @@ namespace Web_ASM_Nhom6.Controllers
             var isSuccsess = users.SingleOrDefault(a => a.Email.Equals(username) && a.Password.Equals(password));
             if (isSuccsess == null)
             {
-                return View(users);
+                TempData["LoginSuccess"] = "False";
+                return View();
             }
             else if (isSuccsess.role.Equals("admin"))
             {
@@ -123,18 +124,41 @@ namespace Web_ASM_Nhom6.Controllers
 
         public async Task<IActionResult> FacebookResponse()
         {
-            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            if (!authenticateResult.Succeeded)
-                return BadRequest(); // Xử lý lỗi đăng nhập
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!result.Succeeded)
+                return BadRequest();
 
-
-            var claims = authenticateResult.Principal.Identities.FirstOrDefault()?.Claims.Select(claim => new
+            List<User> users = new List<User>();
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
+            foreach (var claim in result.Principal.Claims)
             {
-                claim.Type,
-                claim.Value
-            });
+                Console.WriteLine($"Type: {claim.Type}, Value: {claim.Value}");
+            }
+            var emailClaim = result.Principal.FindFirst(ClaimTypes.Email);
+            if (emailClaim == null)
+            {
+                return RedirectToAction("Login");
+            }
 
-            return RedirectToAction("Index", "Home");
+            
+            var isSuccsessEmail = users.FirstOrDefault(u => u.Email == emailClaim?.Value);
+
+            if (isSuccsessEmail == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else if (isSuccsessEmail.role.Equals("admin"))
+            {
+                return RedirectToAction("Index");
+            }
+            else if (isSuccsessEmail.role.Equals("restaurant"))
+            {
+                //return RedirectToAction("RestaurantIndex");
+            }
+            return RedirectToAction("Login");
         }
 
 
