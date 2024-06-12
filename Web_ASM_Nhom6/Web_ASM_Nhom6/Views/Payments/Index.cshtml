@@ -1,0 +1,95 @@
+﻿@{
+    double Total = 0;
+}
+<div class="container mt-2 mb-3">
+    <h1 class="text-center fw-bold mb-3">TẠO HÓA ĐƠN</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-7">
+            <h2 class="mb-4">Thông tin giao hàng</h2>
+            <hr>
+            <div class="mb-3">
+                <label for="fullname" class="form-label">Họ và tên</label>
+                <input type="text" class="form-control" id="fullname" name="fullname">
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+
+            <div class="mb-3">
+                <label for="note" class="form-label">Ghi chú</label>
+                <textarea class="form-control" id="note" name="note" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <h2 class="mb-4">Đơn hàng</h2>
+            <hr>
+            <div class="card mb-4">
+                <div class="card-body">
+@*                     @foreach (var item in Model)
+                    {
+                        
+                    } *@
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <img src="@Url.Content("")" alt="Sản Phẩm" width="50px" height="50px" />
+                        </div>
+                        <div class="col-4">
+                            .name <span class="sl">(x1)</span>
+                            <div class="thuoc-tinh"></div>
+                        </div>
+                        <div class="col-4 text-end">price.ToString("#,###") Đ</div>
+                    </div>
+                    {
+                    Total += item.price;
+                    }
+                    <div class="row mb-3">
+                        <div class="col-8"><strong>Tạm tính</strong></div>
+                        <div class="col-4 text-end"><strong>@Total.ToString("#,###") Đ</strong></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-8">Phí vận chuyển</div>
+                        <div class="col-4 text-end lbl-shipfee" data-shipping-fee="0">0 Đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h3 class="mb-0">Tổng cộng: <span id="cart_total_money">@Total.ToString("#,###") Đ</span></h3>
+            </div>
+
+            <div>
+                <button type="button" id="btnSuccess" class="btn btn-primary">Đặt hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btnSuccess").click(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Thành công",
+                text: "Đặt hàng thành công",
+                icon: "success",
+            }).then((result) => {
+                if (result.isConfirmed == true || result.isDismissed == false) {
+                    window.location.href = '@Url.Action("Login", "Login")';
+                }
+            });
+        })
+    });
+
+</script>

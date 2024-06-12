@@ -8,11 +8,11 @@
                 </div>
                 <div class="form-group pb-2 ms-5 me-5">
                     <label class="form-label text-label pb-2" for="Username">Tên tài khoản</label>
-                    <input class="form-control input-brd" type="text" name="username" id="">
+                    <input class="form-control input-brd" type="text" name="username">
                 </div>
                 <div class="form-group pb-2 ms-5 me-5">
                     <label class="form-label text-label pb-2" for="Password">Mật khẩu</label>
-                    <input class="form-control input-brd" type="password" name="password" id="">
+                    <input class="form-control input-brd" type="password" name="password">
                 </div>
                 <div class="ms-5 me-5">
                     <ul class="gr-icon">
@@ -26,7 +26,19 @@
                     <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </div>
             </form>
-            
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var loginSuccess = '@TempData["LoginSuccess"]';
+        console.log(loginSuccess);
+        if (loginSuccess === "False") {
+            Swal.fire({
+                title: "Đăng nhập thất bại",
+                text: "Tài khoản hoặc mật khẩu không chính xác",
+                icon: "error",
+            });
+        }
+    });
+</script>
