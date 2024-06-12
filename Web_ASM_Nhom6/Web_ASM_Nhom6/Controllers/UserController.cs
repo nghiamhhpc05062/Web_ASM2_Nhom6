@@ -77,6 +77,39 @@ namespace Web_ASM_Nhom6.Controllers
                 }
             }
         }
+        [HttpGet]
+        public IActionResult ChangeAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeAddress(ChangeAddressModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Thông tin không hợp lệ.";
+                return View(model);
+            }
+
+            using (var httpClient = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var response = await httpClient.PutAsync($"{url}/ChangeAddress", content); // Cập nhật endpoint tùy theo API của bạn
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewBag.SuccessMessage = "Địa chỉ đã được cập nhật thành công.";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Có lỗi xảy ra. Vui lòng thử lại.";
+                    return View(model);
+                }
+            }
+        }
     }
 }
 
