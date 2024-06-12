@@ -24,9 +24,7 @@ namespace Web_ASM_Nhom6.Controllers
     public class ProductController : Controller
     {
 
-        //
         private string url = "http://localhost:29015/api/Product";
-        //
         private string urlmenu = "http://localhost:29015/api/Menu";
         private string urlrestaurant = "http://localhost:29015/api/Restaurant";
 
@@ -68,28 +66,6 @@ namespace Web_ASM_Nhom6.Controllers
             return View(products);
         }
 
-
-<<<<<<< HEAD
-        [HttpGet]
-        public async Task<IActionResult> AdminProduct()
-        {
-            List<Product> products = new List<Product>();
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(url))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
-                }
-            }
-
-            return View(products);
-        }
-
-
-=======
->>>>>>> 77ee47f (thêm thêm ảnh)
 
         //Add
         [HttpGet]
@@ -216,11 +192,7 @@ namespace Web_ASM_Nhom6.Controllers
                 if (Array.Exists(extensions, e => e == extension))
                 {
                     var fileName = Guid.NewGuid() + extension;
-<<<<<<< HEAD
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image/Product", fileName);
-=======
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image", fileName);
->>>>>>> 77ee47f (thêm thêm ảnh)
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -228,11 +200,7 @@ namespace Web_ASM_Nhom6.Controllers
                     }
 
                     // Set the image URL
-<<<<<<< HEAD
                     product.Image = "/image/Product/" + fileName;
-=======
-                    product.Image = "/image/" + fileName;
->>>>>>> 77ee47f (thêm thêm ảnh)
                 }
                 else
                 {
