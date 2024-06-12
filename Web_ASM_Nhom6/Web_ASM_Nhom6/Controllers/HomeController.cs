@@ -32,31 +32,10 @@ namespace Web_ASM_Nhom6.Controllers
         {
             return View();
         }
-        public IActionResult Dangky()
-        {
-            return View();
-        }
-
         public IActionResult Privacy()
         {
             return View();
         }
-
-        public async Task<IActionResult> Restaurant(int id)
-        {
-            Restaurant restaurant = new Restaurant();
-            using (var httpclient = new HttpClient())
-            {
-                using (var response = await httpclient.GetAsync($"{url2}/{id}"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    restaurant = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
-                }
-            };
-            return View(restaurant);
-        }
-
-
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
