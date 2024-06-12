@@ -1,6 +1,6 @@
 ﻿@model Web_ASM_Nhom6.Models.Restaurant
 @{
-    ViewData["Title"] = "Add Restaurant";
+    ViewData["Title"] = "Thêm Cửa Hàng";
     var categories = ViewBag.Categories as List<Category>;
 }
 
@@ -9,16 +9,23 @@
     <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-header bg-danger text-white">
-                <h5 class="text-center" class="mb-0">TRỞ HÀNH NGƯỜI BÁN</h5>
+                <h5 class="text-center mb-0">TRỞ THÀNH NGƯỜI BÁN</h5>
             </div>
             <div class="card-body">
-                <form asp-action="Add">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                <form asp-action="Add" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                     <div class="form-group">
-                        <label asp-for="CategoryId" class="control-label"> <strong>Danh Mục Sản Phẩm</strong></label>
+                        <label asp-for="CategoryId" class="control-label"><strong>Danh Mục Sản Phẩm</strong></label>
                         <select asp-for="CategoryId" class="form-control">
-                            <option value="">Select Category</option>
+                            <option value="">Chọn Danh Mục</option>
                             @if (categories != null)
                             {
                                 foreach (var category in categories)
@@ -29,24 +36,28 @@
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"> <strong>Tên Cửa Hàng</strong></label>
-                        <input asp-for="Name" class="form-control" placeholder="Enter Name" />
+                        <label asp-for="Name" class="control-label"><strong>Tên Cửa Hàng</strong></label>
+                        <input asp-for="Name" class="form-control" placeholder="Nhập Tên" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
-                        <label class="control-label"> <strong>Ảnh Cửa Hàng</strong></label>
+                        <label class="control-label"><strong>Ảnh Cửa Hàng</strong></label>
                         <input type="file" name="ImageFile" class="form-control-file" />
-                        <small class="form-text text-muted">Choose an image file to upload.</small>
+                        <small class="form-text text-muted">Chọn một tệp hình ảnh để tải lên.</small>
                     </div>
+
                     <div class="form-group">
-                        <label asp-for="Address" class="control-label"> <strong>Địa Chỉ</strong></label>
-                        <input asp-for="Address" class="form-control" placeholder="Enter Address" />
+                        <label asp-for="Address" class="control-label"><strong>Địa Chỉ</strong></label>
+                        <input asp-for="Address" class="form-control" placeholder="Nhập Địa Chỉ" />
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
-                        <label asp-for="OpeningHours" class="control-label"> <strong>Giờ Mở Cửa</strong></label>
-                        <input asp-for="OpeningHours" class="form-control" placeholder="Enter Opening Hours" />
+                        <label asp-for="OpeningHours" class="control-label"><strong>Giờ Mở Cửa</strong></label>
+                        <input asp-for="OpeningHours" class="form-control" placeholder="Nhập Giờ Mở Cửa" />
                         <span asp-validation-for="OpeningHours" class="text-danger"></span>
                     </div>
 
@@ -63,6 +74,15 @@
 </div>
 
 @section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(".alert-success").fadeOut("slow", function () {
+                    $(this).remove();
+                });
+            }, 5000); // Điều chỉnh thời gian trì hoãn nếu cần
+        });
+    </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
