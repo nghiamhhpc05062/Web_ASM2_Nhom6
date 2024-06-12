@@ -63,55 +63,22 @@ namespace Web_ASM_Nhom6.Controllers
 
             return View(restaurants);
         }
-
-        public IActionResult Gioithieu()
+        public IActionResult Dangky()
+        {
+            return View();
+        }
+        public IActionResult Lienhe()
         {
             return View();
         }
 
-        //Trang chủ Fake
-        [HttpGet]
-        public async Task<IActionResult> IndexFake()
-        {
-            List<Restaurant> restaurants = new List<Restaurant>();
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(url))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    restaurants = JsonConvert.DeserializeObject<List<Restaurant>>(apiResponse);
-                }
-            }
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(urlCategory))
-                {
-                    string categoryApiResponse = await response.Content.ReadAsStringAsync();
-                    var categories = JsonConvert.DeserializeObject<List<Category>>(categoryApiResponse);
-
-                    foreach (var restaurant in restaurants)
-                    {
-                        var category = categories.FirstOrDefault(c => c.CategoryId == restaurant.CategoryId);
-                        if (category != null)
-                        {
-                            restaurant.Category = category;
-                        }
-                    }
-                }
-            }
-
-            return View(restaurants);
-
-        }
 
         public async Task<IActionResult> Restaurant(int id)
         {
             Restaurant restaurant = new Restaurant();
             using (var httpclient = new HttpClient())
             {
-                using (var response = await httpclient.GetAsync($"{url}/{id}"))
+                using (var response = await httpclient.GetAsync($"{url2}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     restaurant = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
@@ -120,6 +87,8 @@ namespace Web_ASM_Nhom6.Controllers
             return View(restaurant);
         }
 
+
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
