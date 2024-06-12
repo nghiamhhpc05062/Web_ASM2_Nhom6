@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> 77ee47f (thêm thêm ảnh)
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
@@ -66,6 +69,7 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
+<<<<<<< HEAD
         [HttpGet]
         public async Task<IActionResult> AdminProduct()
         {
@@ -84,6 +88,8 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
+=======
+>>>>>>> 77ee47f (thêm thêm ảnh)
 
         //Add
         [HttpGet]
@@ -210,7 +216,11 @@ namespace Web_ASM_Nhom6.Controllers
                 if (Array.Exists(extensions, e => e == extension))
                 {
                     var fileName = Guid.NewGuid() + extension;
+<<<<<<< HEAD
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image/Product", fileName);
+=======
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image", fileName);
+>>>>>>> 77ee47f (thêm thêm ảnh)
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -218,7 +228,11 @@ namespace Web_ASM_Nhom6.Controllers
                     }
 
                     // Set the image URL
+<<<<<<< HEAD
                     product.Image = "/image/Product/" + fileName;
+=======
+                    product.Image = "/image/" + fileName;
+>>>>>>> 77ee47f (thêm thêm ảnh)
                 }
                 else
                 {
