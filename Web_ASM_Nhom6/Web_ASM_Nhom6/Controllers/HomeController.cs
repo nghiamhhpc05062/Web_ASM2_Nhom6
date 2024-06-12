@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 
 using Microsoft.AspNetCore.Mvc;
-=======
-﻿using Microsoft.AspNetCore.Mvc;
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -11,15 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-<<<<<<< HEAD
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
 using static System.Net.WebRequestMethods;
-=======
-using System.Text;
-using System.Threading.Tasks;
-using Web_ASM_Nhom6.Models;
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
 
 namespace Web_ASM_Nhom6.Controllers
 {
@@ -27,24 +17,12 @@ namespace Web_ASM_Nhom6.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-<<<<<<< HEAD
-=======
-        public string url = "http://localhost:29015/api/Menu";
-        public string url2 = "http://localhost:29015/api/Restaurant";
-
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
-<<<<<<< HEAD
-
         private string url = "http://localhost:29015/api/Restaurant";
-
         private string urlCategory = "http://localhost:29015/api/Category";
-
-
         //trang chủ
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -79,8 +57,9 @@ namespace Web_ASM_Nhom6.Controllers
             }
 
             return View(restaurants);
-=======
-        public IActionResult Index()
+        }
+
+        public IActionResult GioiThieu()
         {
             return View();
         }
@@ -91,22 +70,7 @@ namespace Web_ASM_Nhom6.Controllers
         public IActionResult Dangky()
         {
             return View();
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-<<<<<<< HEAD
-        public IActionResult GioiThieu()
-        {
-            return View();
-        }
-
-        
-
 
 
         //Trang chủ Fake
@@ -149,32 +113,11 @@ namespace Web_ASM_Nhom6.Controllers
 
 
 
-=======
-        public async Task<IActionResult> Restaurant(int id)
-        {
-            Restaurant restaurant = new Restaurant();
-            using (var httpclient = new HttpClient())
-            {
-                using (var response = await httpclient.GetAsync($"{url2}/{id}"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    restaurant = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
-                }
-            };
-            return View(restaurant);
-        }
-
-
-        
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)
     }
 }
