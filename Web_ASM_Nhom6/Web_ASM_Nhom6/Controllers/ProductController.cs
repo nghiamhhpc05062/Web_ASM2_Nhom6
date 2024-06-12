@@ -23,7 +23,7 @@ namespace Web_ASM_Nhom6.Controllers
                     products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
                 }
             }
-
+              
             return View(products);
         }
     }

@@ -71,6 +71,10 @@ namespace Web_ASM_Nhom6.Controllers
         {
             return View();
         }
+        public IActionResult Gioithieu()
+        {
+            return View();
+        }
 
 
         public async Task<IActionResult> Restaurant(int id)
@@ -78,7 +82,7 @@ namespace Web_ASM_Nhom6.Controllers
             Restaurant restaurant = new Restaurant();
             using (var httpclient = new HttpClient())
             {
-                using (var response = await httpclient.GetAsync($"{url2}/{id}"))
+                using (var response = await httpclient.GetAsync($"{url}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     restaurant = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
