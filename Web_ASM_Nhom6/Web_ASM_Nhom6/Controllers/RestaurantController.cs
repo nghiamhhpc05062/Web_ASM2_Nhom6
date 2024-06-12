@@ -54,7 +54,7 @@ namespace Web_ASM_Nhom6.Controllers
                 if (Array.Exists(extensions, e => e == extension))
                 {
                     var fileName = Guid.NewGuid() + extension;
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image", fileName);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -62,11 +62,11 @@ namespace Web_ASM_Nhom6.Controllers
                     }
 
                     // Set the image URL
-                    restaurant.Image = "/uploads/" + fileName;
+                    restaurant.Image = "/iamge/" + fileName;
                 }
                 else
                 {
-                    ViewBag.Error = "Invalid file type. Please upload an image file.";
+                    ViewBag.Error = "Định dạng tệp không hợp lệ. Vui lòng tải lên một tệp hình ảnh.";
                     return View(restaurant);
                 }
             }
@@ -84,24 +84,24 @@ namespace Web_ASM_Nhom6.Controllers
                         {
                             if (response.IsSuccessStatusCode)
                             {
-                                string apiResponse = await response.Content.ReadAsStringAsync();
-                                var result = JsonConvert.DeserializeObject<Restaurant>(apiResponse);
-                                return RedirectToAction("Index", "Home");
+                                TempData["SuccessMessage"] = "Chúc mừng, đăng ký thành công!";
+                                return RedirectToAction("Add");
                             }
                             else
                             {
-                                ViewBag.Error = $"Error: {response.StatusCode}";
+                                ViewBag.Error = $"Lỗi: {response.StatusCode}";
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Error = "An error occurred while sending data to the API: " + ex.Message;
+                    ViewBag.Error = "Đã xảy ra lỗi khi gửi dữ liệu đến API: " + ex.Message;
                 }
             }
 
             return View(restaurant);
         }
+
     }
 }
