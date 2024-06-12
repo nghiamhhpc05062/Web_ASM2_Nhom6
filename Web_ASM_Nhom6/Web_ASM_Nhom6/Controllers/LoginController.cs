@@ -133,10 +133,8 @@ namespace Web_ASM_Nhom6.Controllers
             var response = await httpClient.GetAsync(url);
             string apiResponse = await response.Content.ReadAsStringAsync();
             users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-            foreach (var claim in result.Principal.Claims)
-            {
-                Console.WriteLine($"Type: {claim.Type}, Value: {claim.Value}");
-            }
+
+
             var emailClaim = result.Principal.FindFirst(ClaimTypes.Email);
             if (emailClaim == null)
             {
