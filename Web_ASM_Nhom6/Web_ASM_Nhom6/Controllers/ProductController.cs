@@ -66,6 +66,24 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> AdminProduct()
+        {
+            List<Product> products = new List<Product>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                }
+            }
+
+            return View(products);
+        }
+
+
 
         //Add
         [HttpGet]
@@ -192,7 +210,7 @@ namespace Web_ASM_Nhom6.Controllers
                 if (Array.Exists(extensions, e => e == extension))
                 {
                     var fileName = Guid.NewGuid() + extension;
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image", fileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image/Product", fileName);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -200,7 +218,7 @@ namespace Web_ASM_Nhom6.Controllers
                     }
 
                     // Set the image URL
-                    product.Image = "/image/" + fileName;
+                    product.Image = "/image/Product/" + fileName;
                 }
                 else
                 {
