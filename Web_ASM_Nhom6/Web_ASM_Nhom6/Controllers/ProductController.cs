@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -73,17 +74,43 @@ namespace Web_ASM_Nhom6.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Add(Product product)
+        public async Task<IActionResult> Add(Product product, IFormFile ImageFile)
         {
-            using (var httpClient = new HttpClient())
+            if (ImageFile != null && ImageFile.Length > 0)
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product),
-                    Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync(url, content))
+                var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                var extension = Path.GetExtension(ImageFile.FileName).ToLower();
+
+                if (Array.Exists(extensions, e => e == extension))
                 {
-                    string apiRes = await response.Content.ReadAsStringAsync();
-                    product = JsonConvert.DeserializeObject<Product>(apiRes);
+                    var fileName = Guid.NewGuid() + extension;
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image/Product", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImageFile.CopyToAsync(stream);
+                    }
+
+                    // Set the image URL
+                    product.Image = "/image/Product/" + fileName;
                 }
+                else
+                {
+                    ViewBag.Error = "Invalid file type. Please upload an image file.";
+                    return View(product);
+                }
+                using (var httpClient = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(product),
+                        Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync(url, content))
+                    {
+                        string apiRes = await response.Content.ReadAsStringAsync();
+                        product = JsonConvert.DeserializeObject<Product>(apiRes);
+                    }
+                }
+
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
@@ -155,28 +182,55 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product)
+        public async Task<IActionResult> Edit(Product product, IFormFile ImageFile)
         {
-            if (!ModelState.IsValid)
+            if (ImageFile != null && ImageFile.Length > 0)
             {
-                return View(product);
-            }
+                var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                var extension = Path.GetExtension(ImageFile.FileName).ToLower();
 
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product),
-                    Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await httpClient.PutAsync($"{url}/{product.ProductId}", content);
-                if (response.IsSuccessStatusCode)
+                if (Array.Exists(extensions, e => e == extension))
                 {
-                    return RedirectToAction("Index");
+                    var fileName = Guid.NewGuid() + extension;
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/image", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImageFile.CopyToAsync(stream);
+                    }
+
+                    // Set the image URL
+                    product.Image = "/image/" + fileName;
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
+                    ViewBag.Error = "Invalid file type. Please upload an image file.";
                     return View(product);
                 }
+
+
+                if (!ModelState.IsValid)
+                {
+                    return View(product);
+                }
+
+                using (var httpClient = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(product),
+                        Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await httpClient.PutAsync($"{url}/{product.ProductId}", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
+                        return View(product);
+                    }
+                }
             }
+            return View(product);
         }
 
 
