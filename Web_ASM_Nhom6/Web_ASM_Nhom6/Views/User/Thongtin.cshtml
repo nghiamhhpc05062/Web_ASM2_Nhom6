@@ -1,4 +1,5 @@
 ﻿@model Web_ASM_Nhom6.Models.User
+@using Web_ASM_Nhom6.Service
 
 <div class="container-fluid col-md-12 row vh-100">
     <div class="col-md-3">
@@ -44,31 +45,24 @@
                 </div>
             </div>
             <div class="col-md-8 bg-secondary">
-                @if (Model != null)
-                {
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Tên</label>
-                            <input type="text" class="form-control" id="name" value="@Model.Name" readonly />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="@Model.Email" readonly />
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control" id="phone" value="@Model.Phone" readonly />
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control" id="address" value="@Model.Address" readonly />
-                        </div>
-                    </form>
-                }
-                else
-                {
-                    <p>Không có dữ liệu người dùng để hiển thị.</p>
-                }
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" value="@SUser.User.Name" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" value="@SUser.User.Email" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone" value="@SUser.User.Phone" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" value="@SUser.User.Address" readonly />
+                    </div>
+                </form>
             </div>
         </div>
     </div>

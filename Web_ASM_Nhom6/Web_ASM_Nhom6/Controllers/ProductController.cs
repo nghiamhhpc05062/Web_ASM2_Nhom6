@@ -14,6 +14,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
+using Web_ASM_Nhom6.Service;
 
 
 namespace Web_ASM_Nhom6.Controllers
@@ -73,6 +74,7 @@ namespace Web_ASM_Nhom6.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(Product product, IFormFile ImageFile)
         {
+          
             if (ImageFile != null && ImageFile.Length > 0)
             {
                 var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };

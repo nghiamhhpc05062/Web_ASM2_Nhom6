@@ -65,13 +65,16 @@ namespace Web_ASM_Nhom6.Controllers
             if(isSuccsess != null)
             {
                 SUser.User = isSuccsess;
-                if (isSuccsess.role.Equals("admin"))
+                if (isSuccsess.role.ToLower().Equals("admin"))
                 {
                     return RedirectToAction("Index");
                 }
-                else if (isSuccsess.role.Equals("restaurant"))
+                else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
                     //return RedirectToAction("RestaurantIndex");
+                }else if (isSuccsess.role.ToLower().Equals("user"))
+                {
+                    return RedirectToAction("Index", "Home");
                 }
             }
             TempData["LoginSuccess"] = "False";

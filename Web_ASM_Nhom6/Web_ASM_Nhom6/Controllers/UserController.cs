@@ -6,6 +6,7 @@ using Web_ASM_Nhom6.Models;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http.Headers;
+using Web_ASM_Nhom6.Service;
 
 namespace Web_ASM_Nhom6.Controllers
 {
@@ -17,30 +18,11 @@ namespace Web_ASM_Nhom6.Controllers
         [HttpGet]
         public async Task<IActionResult> Thongtin()
         {
-            User user = null;
-
-            using (var httpClient = new HttpClient())
+            if(SUser.User == null)
             {
-                var response = await httpClient.GetAsync(url); // Gọi API để lấy danh sách người dùng
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    var users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-
-                    if (users != null && users.Count > 0)
-                    {
-                        user = users[0]; // Lấy người dùng đầu tiên
-                    }
-                }
-                else
-                {
-                    // Xử lý lỗi từ API
-                    ViewBag.ErrorMessage = "Không thể lấy dữ liệu người dùng.";
-                    return View("Error");
-                }
+                return RedirectToAction("Login", "Login");
             }
-
-            return View(user); // Chuyển người dùng tới view
+            return View(); // Chuyển người dùng tới view
         }
 
         [HttpGet]
