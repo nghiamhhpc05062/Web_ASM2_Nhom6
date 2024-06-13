@@ -8,11 +8,11 @@
                 </div>
                 <div class="form-group pb-2 ms-5 me-5">
                     <label class="form-label text-label pb-2" for="Username">Tên tài khoản</label>
-                    <input class="form-control input-brd" type="text" name="username">
+                    <input class="form-control input-brd" id="username" type="text" name="username">
                 </div>
                 <div class="form-group pb-2 ms-5 me-5">
                     <label class="form-label text-label pb-2" for="Password">Mật khẩu</label>
-                    <input class="form-control input-brd" type="password" name="password">
+                    <input class="form-control input-brd" id="password" type="password" name="password">
                 </div>
                 <div class="ms-5 me-5">
                     <ul class="gr-icon">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="ms-5 me-5 gr-btn mb-3">
                     <button class="btn btn-success">Đăng kí</button>
-                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    <button type="submit" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
                 </div>
             </form>
         </div>
@@ -32,8 +32,13 @@
 <script>
     $(document).ready(function () {
         var loginSuccess = '@TempData["LoginSuccess"]';
-        console.log(loginSuccess);
-        if (loginSuccess === "False") {
+        if (loginSuccess === "InputNull") {
+            Swal.fire({
+                title: "Đăng nhập thất bại",
+                text: "Vui lòng nhập tài khoản và mật khẩu",
+                icon: "error",
+            });
+        }else if (loginSuccess === "False") {
             Swal.fire({
                 title: "Đăng nhập thất bại",
                 text: "Tài khoản hoặc mật khẩu không chính xác",

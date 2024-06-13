@@ -1,6 +1,9 @@
-﻿namespace Web_ASM_Nhom6.Service
+﻿using Web_ASM_Nhom6.Models;
+
+namespace Web_ASM_Nhom6.Service
 {
-    public class SUser
+    public static class SUser
     {
+        public static User  User { get; set; }
     }
 }

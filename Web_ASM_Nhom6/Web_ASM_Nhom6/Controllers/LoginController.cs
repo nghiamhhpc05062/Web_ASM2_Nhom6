@@ -55,21 +55,27 @@ namespace Web_ASM_Nhom6.Controllers
             var response = await httpClient.GetAsync(url);
             string apiResponse = await response.Content.ReadAsStringAsync();
             users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-            var isSuccsess = users.SingleOrDefault(a => a.Email.Equals(username) && a.Password.Equals(password));
-            if (isSuccsess == null)
+            if (username == null || password == null)
             {
-                TempData["LoginSuccess"] = "False";
+                TempData["LoginSuccess"] = "InputNull";
                 return View();
             }
-            else if (isSuccsess.role.Equals("admin"))
+            var isSuccsess = users.SingleOrDefault(a => a.Email.Equals(username) && a.Password.Equals(password));
+
+            if(isSuccsess != null)
             {
-                return RedirectToAction("Index");
+                SUser.User = isSuccsess;
+                if (isSuccsess.role.Equals("admin"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else if (isSuccsess.role.Equals("restaurant"))
+                {
+                    //return RedirectToAction("RestaurantIndex");
+                }
             }
-            else if (isSuccsess.role.Equals("restaurant"))
-            {
-                //return RedirectToAction("RestaurantIndex");
-            }
-            return Ok();
+            TempData["LoginSuccess"] = "False";
+            return View();
         }
         
         public async Task SingInWithGoogle()

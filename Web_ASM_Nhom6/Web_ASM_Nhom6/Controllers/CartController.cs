@@ -18,6 +18,10 @@ namespace Web_ASM_Nhom6.Controllers
         private readonly string url = "http://localhost:29015/api/Product";
         public async Task<IActionResult> Index()
         {
+            if(SUser.User == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             int? productId = HttpContext.Session.GetInt32("ProductId");
             List<Product> listPro = new List<Product>();
             using (var httpClient = new HttpClient())

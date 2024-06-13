@@ -9,17 +9,23 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
+using Web_ASM_Nhom6.Service;
 
 namespace Web_ASM_Nhom6.Controllers
 {
     public class RestaurantController : Controller
     {
         private readonly string _restaurantUrl = "http://localhost:29015/api/Restaurant";
-        private readonly string _categoryUrl = "http://localhost:29015/api/Category"; // Assuming this is the category API URL
+        private readonly string _categoryUrl = "http://localhost:29015/api/Category";
+        private readonly string userAPI = "https://localhost:44388/api/User";
 
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            if (SUser.User == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             List<Category> categories = new List<Category>();
 
             using (var httpClient = new HttpClient())
@@ -84,6 +90,10 @@ namespace Web_ASM_Nhom6.Controllers
                         {
                             if (response.IsSuccessStatusCode)
                             {
+                                SUser.User.role = "restaurant";
+                                StringContent contentUser = new StringContent(JsonConvert.SerializeObject(SUser.User),
+                                Encoding.UTF8, "application/json");
+                                HttpResponseMessage responseUser = await httpClient.PutAsync($"{userAPI}/{SUser.User.UserId}", contentUser);
                                 TempData["SuccessMessage"] = "Chúc mừng, đăng ký thành công!";
                                 return RedirectToAction("Add");
                             }
