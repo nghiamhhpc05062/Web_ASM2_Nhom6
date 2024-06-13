@@ -33,12 +33,12 @@ $(document).ready(function () {
         var totalPrice = 0;
         $('.txt-qty').each(function (index) {
             var quantity = parseInt($(this).val());
-            var price = parseFloat($('.price').eq(index).text().replace(' Đ', '').replace(/,/g, ''));
+            var price = parseFloat($('.price').eq(index).text().replace(' VNĐ', '').replace(/,/g, ''));
             var total = quantity * price;
-            $('.total').eq(index).text(total.toLocaleString() + ' Đ');
+            $('.total').eq(index).text(total.toLocaleString() + ' VNĐ');
             totalPrice += total;
         });
-        $('.total-price').text(totalPrice.toLocaleString() + ' Đ');
+        $('.total-price').text(totalPrice.toLocaleString() + ' VNĐ');
     }
     calculateTotal();
 });

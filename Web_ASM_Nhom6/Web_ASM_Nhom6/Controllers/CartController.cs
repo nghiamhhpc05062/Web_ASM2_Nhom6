@@ -36,7 +36,7 @@ namespace Web_ASM_Nhom6.Controllers
                 sproduct = new SProduct();
                 sproduct.Products = new List<Product>();
             }
-            if (prod != null)
+            if (prod != null && !sproduct.Products.Any(p => p.ProductId == prod.ProductId))
             {
                 sproduct.Products.Add(prod);
                 HttpContext.Session.SetObject("SProduct", sproduct);
@@ -44,7 +44,11 @@ namespace Web_ASM_Nhom6.Controllers
 
             return View(sproduct);
         }
-
+        public IActionResult getProductId(int id)
+        {
+            HttpContext.Session.SetInt32("ProductId", id);
+            return RedirectToAction("Index");
+        }
         public IActionResult DeleteProduct(int id)
         {
             SProduct sproduct = HttpContext.Session.GetObject<SProduct>("SProduct");
@@ -53,11 +57,6 @@ namespace Web_ASM_Nhom6.Controllers
                 sproduct.Products.RemoveAll(product => product.ProductId == id);
                 HttpContext.Session.SetObject("SProduct", sproduct);
             }
-            return RedirectToAction("Index");
-        }
-        public IActionResult getProductId(int id)
-        {
-            HttpContext.Session.SetInt32("ProductId", id);
             return RedirectToAction("Index");
         }
     }

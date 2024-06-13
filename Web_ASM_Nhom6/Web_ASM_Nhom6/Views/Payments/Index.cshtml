@@ -1,5 +1,6 @@
-﻿@{
-    double Total = 0;
+﻿@model List<Product>
+@{
+    decimal Total = 0;
 }
 <div class="container mt-2 mb-3">
     <h1 class="text-center fw-bold mb-3">TẠO HÓA ĐƠN</h1>
@@ -38,36 +39,26 @@
             <hr>
             <div class="card mb-4">
                 <div class="card-body">
-@*                     @foreach (var item in Model)
+                    @foreach (var item in Model)
                     {
-                        
-                    } *@
-                    <div class="row mb-3">
-                        <div class="col-4">
-                            <img src="@Url.Content("")" alt="Sản Phẩm" width="50px" height="50px" />
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <img src="@Url.Content("~/image/"+item.Image)" alt="Sản Phẩm" width="50px" height="50px" />
+                            </div>
+                            <div class="col-4">
+                                @item.Name <span class="sl">(x1)</span>
+                                <div class="thuoc-tinh"></div>
+                            </div>
+                            <div class="col-4 text-end">@item.Price.ToString("#,###") VNĐ</div>
                         </div>
-                        <div class="col-4">
-                            .name <span class="sl">(x1)</span>
-                            <div class="thuoc-tinh"></div>
-                        </div>
-                        <div class="col-4 text-end">price.ToString("#,###") Đ</div>
-                    </div>
-                    {
-                    Total += item.price;
+                        {
+                            Total += item.Price;
+                        }
                     }
-                    <div class="row mb-3">
-                        <div class="col-8"><strong>Tạm tính</strong></div>
-                        <div class="col-4 text-end"><strong>@Total.ToString("#,###") Đ</strong></div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-8">Phí vận chuyển</div>
-                        <div class="col-4 text-end lbl-shipfee" data-shipping-fee="0">0 Đ</div>
-                    </div>
                 </div>
             </div>
-
             <div class="mb-4">
-                <h3 class="mb-0">Tổng cộng: <span id="cart_total_money">@Total.ToString("#,###") Đ</span></h3>
+                <h3 class="mb-0">Tổng cộng: <span id="cart_total_money">@Total.ToString("#,###") VNĐ</span></h3>
             </div>
 
             <div>
@@ -86,7 +77,7 @@
                 icon: "success",
             }).then((result) => {
                 if (result.isConfirmed == true || result.isDismissed == false) {
-                    window.location.href = '@Url.Action("Login", "Login")';
+                    window.location.href = '@Url.Action("Index", "Home")';
                 }
             });
         })
