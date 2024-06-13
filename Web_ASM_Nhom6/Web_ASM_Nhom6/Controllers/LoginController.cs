@@ -124,6 +124,9 @@ namespace Web_ASM_Nhom6.Controllers
             else if (isSuccsess.role.Equals("restaurant"))
             {
                 //return RedirectToAction("RestaurantIndex");
+            }else if (isSuccsess.role.Equals("user"))
+            {
+                return RedirectToAction("Index","Home");
             }
             return RedirectToAction("Login");
         }        
