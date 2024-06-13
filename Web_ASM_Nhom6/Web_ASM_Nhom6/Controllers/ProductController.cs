@@ -249,9 +249,6 @@ namespace Web_ASM_Nhom6.Controllers
                     }
                 }
             }
-
-
-
             return View(getidproduct);
         }
 

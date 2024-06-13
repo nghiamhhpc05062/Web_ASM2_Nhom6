@@ -78,7 +78,7 @@
                     @foreach (var item in Model.Take(15))
                     {
                         <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
-                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
+                                    <img class="m-auto" src="@Url.Content("~/image/"+item.Image)" alt="alternate text" width="220px" height="150px" />
                             <h5 class="text-left" >@Html.DisplayFor(modelitem => item.Name)</h5>
                             <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
                             <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>

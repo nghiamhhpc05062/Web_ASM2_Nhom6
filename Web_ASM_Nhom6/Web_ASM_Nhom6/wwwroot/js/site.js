@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 $(document).ready(function () {
     $('#btnDelete').click(function (e) {
         e.preventDefault();
@@ -6,7 +6,7 @@ $(document).ready(function () {
         var isDelete = true;
         var button = $(this);
         $.ajax({
-            url: 'User/Cart/DeleteProduct',
+            url: 'Cart/DeleteProduct',
             type: 'POST',
             data: { id: productId, isDelete: isDelete },
             success: function (response) {
@@ -42,9 +42,3 @@ $(document).ready(function () {
     }
     calculateTotal();
 });
-=======
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
->>>>>>> 164bee3 (Đăng ký, liên hệ, cửa hàng)

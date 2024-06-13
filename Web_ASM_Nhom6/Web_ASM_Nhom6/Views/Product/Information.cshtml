@@ -7,7 +7,7 @@
 
     <div class="col-md-12 row container">
         <div class="col-md-4">
-            <img class="p-1 m-auto" src="@Html.DisplayFor(item => item.Image)" alt="Alternate Text" width="330px" height="370px" />
+            <img class="p-1 m-auto" src="@Url.Content("~/image/"+Model.Image)" alt="Alternate Text" width="330px" height="370px" />
         </div>
         <div class="col-md-8">
             <p class="text-primary fs-5">Địa chỉ >> <span>aaa</span> </p>
@@ -44,7 +44,7 @@
                     <span class="text-danger">VFOOD</span>
                 </div>
                 <div class="col-md-4">
-                    <a class="btn btn-danger col-md-12 m-1 text-white">Đặt hàng</a>
+                    <a class="btn btn-danger col-md-12 m-1 text-white" asp-action="getProductId" asp-controller="Cart" asp-route-id="@Model.ProductId">Đặt hàng</a>
                     <a class="btn btn-success col-md-12 m-1  text-white">Xem cửa hàng</a>
                 </div>
             </div>
