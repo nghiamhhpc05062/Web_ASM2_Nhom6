@@ -1,38 +1,4 @@
-﻿
-//using Newtonsoft.Json;
-//using System.Collections.Generic;
-//using System.Net.Http;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Security.Policy;
-//using Web_ASM_Nhom6.Models;
-
-//namespace Web_ASM_Nhom6.Controllers
-//{
-//    public class UserController : Controller
-//    {
-//        // URL của API
-//        private readonly string url = "http://localhost:29015/api/User";
-//        [HttpGet]
-//        public async Task<IActionResult> Thongtin()
-//        {
-//            List<User> products = new List<User>();
-
-//            using (var httpClient = new HttpClient())
-//            {
-//                using (var response = await httpClient.GetAsync(url))
-//                {
-//                    string apiResponse = await response.Content.ReadAsStringAsync();
-//                    products = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-//                }
-//            }
-
-//            return View(products);
-//        }
-//    }
-//}
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -146,49 +112,3 @@ namespace Web_ASM_Nhom6.Controllers
     }
 }
 
-
-//using Newtonsoft.Json;
-//using System.Net.Http;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using Web_ASM_Nhom6.Models;
-//using Microsoft.AspNetCore.Http;
-
-//namespace Web_ASM_Nhom6.Controllers
-//{
-//    public class UserController : Controller
-//    {
-//        // URL của API
-//        private readonly string url = "http://localhost:29015/api/User";
-
-//        [HttpGet]
-//        public async Task<IActionResult> Thongtin()
-//        {
-//            User currentUser = null;
-//            string userId = HttpContext.Session.GetString("UserId"); // Giả sử UserId được lưu trong session
-
-//            if (string.IsNullOrEmpty(userId))
-//            {
-//                return RedirectToAction("Login", "Auth"); // Chuyển hướng đến trang đăng nhập nếu chưa xác thực
-//            }
-
-//            using (var httpClient = new HttpClient())
-//            {
-//                var response = await httpClient.GetAsync($"{url}/{userId}"); // Lấy người dùng theo ID
-//                if (response.IsSuccessStatusCode)
-//                {
-//                    string apiResponse = await response.Content.ReadAsStringAsync();
-//                    currentUser = JsonConvert.DeserializeObject<User>(apiResponse);
-//                }
-//                else
-//                {
-//                    // Xử lý lỗi từ API
-//                    ViewBag.ErrorMessage = "Không thể lấy dữ liệu người dùng.";
-//                    return View("Error");
-//                }
-//            }
-
-//            return View(currentUser); // Chuyển người dùng tới view
-//        }
-//    }
-//}
