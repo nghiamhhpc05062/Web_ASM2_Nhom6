@@ -155,7 +155,6 @@ namespace Web_ASM_Nhom6.Controllers
                 return RedirectToAction("Login");
             }
 
-            
             var isSuccsessEmail = users.FirstOrDefault(u => u.Email == emailClaim?.Value);
 
             if (isSuccsessEmail == null)
