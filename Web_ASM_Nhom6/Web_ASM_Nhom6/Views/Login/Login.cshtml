@@ -38,11 +38,17 @@
                 text: "Vui lòng nhập tài khoản và mật khẩu",
                 icon: "error",
             });
-        }else if (loginSuccess === "False") {
+        } else if (loginSuccess === "False") {
             Swal.fire({
                 title: "Đăng nhập thất bại",
                 text: "Tài khoản hoặc mật khẩu không chính xác",
                 icon: "error",
+            });
+        } else if (loginSuccess === "Block") {
+            Swal.fire({
+                title: "Đăng nhập thất bại",
+                text: "Tài khoản đã bị khóa",
+                icon: "warning",
             });
         }
     });

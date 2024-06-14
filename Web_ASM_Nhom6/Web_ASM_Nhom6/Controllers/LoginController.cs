@@ -64,6 +64,11 @@ namespace Web_ASM_Nhom6.Controllers
 
             if(isSuccsess != null)
             {
+                if (isSuccsess.IsDelete == true)
+                {
+                    TempData["LoginSuccess"] = "Block";
+                    return View();
+                }
                 SUser.User = isSuccsess;
                 if (isSuccsess.role.ToLower().Equals("admin"))
                 {
@@ -71,8 +76,9 @@ namespace Web_ASM_Nhom6.Controllers
                 }
                 else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
-                    //return RedirectToAction("RestaurantIndex");
-                }else if (isSuccsess.role.ToLower().Equals("user"))
+                    return RedirectToAction("ShowRestaurant","ShowRestaurant");
+                }
+                else if (isSuccsess.role.ToLower().Equals("user"))
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -86,13 +92,6 @@ namespace Web_ASM_Nhom6.Controllers
             await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties
             {
                 RedirectUri = Url.Action("GoogleResponse")
-            });
-        }
-        public async Task SignInWithFacebook()
-        {
-            await HttpContext.ChallengeAsync(FacebookDefaults.AuthenticationScheme, new AuthenticationProperties
-            {
-                RedirectUri = Url.Action("FacebookResponse")
             });
         }
 
@@ -114,26 +113,41 @@ namespace Web_ASM_Nhom6.Controllers
             var response = await httpClient.GetAsync(url);
             string apiResponse = await response.Content.ReadAsStringAsync();
             users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
+
             var isSuccsess = users.FirstOrDefault(u => u.Email == emailClaim.Value);
 
-            if (isSuccsess == null)
+            if (isSuccsess != null)
             {
-                return RedirectToAction("Login");
+                if (isSuccsess.IsDelete == true)
+                {
+                    TempData["LoginSuccess"] = "Block";
+                    return View();
+                }
+                SUser.User = isSuccsess;
+                if (isSuccsess.role.ToLower().Equals("admin"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else if (isSuccsess.role.ToLower().Equals("restaurant"))
+                {
+                    return RedirectToAction("ShowRestaurant", "ShowRestaurant");
+                }
+                else if (isSuccsess.role.ToLower().Equals("user"))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else if (isSuccsess.role.Equals("admin"))
-            {
-                return RedirectToAction("Index");
-            }
-            else if (isSuccsess.role.Equals("restaurant"))
-            {
-                //return RedirectToAction("RestaurantIndex");
-            }else if (isSuccsess.role.Equals("user"))
-            {
-                return RedirectToAction("Index","Home");
-            }
-            return RedirectToAction("Login");
-        }        
+            TempData["LoginSuccess"] = "False";
+            return View();
+        }
 
+        public async Task SignInWithFacebook()
+        {
+            await HttpContext.ChallengeAsync(FacebookDefaults.AuthenticationScheme, new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("FacebookResponse")
+            });
+        }
         public async Task<IActionResult> FacebookResponse()
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -155,21 +169,31 @@ namespace Web_ASM_Nhom6.Controllers
                 return RedirectToAction("Login");
             }
 
-            var isSuccsessEmail = users.FirstOrDefault(u => u.Email == emailClaim?.Value);
+            var isSuccsess = users.FirstOrDefault(u => u.Email == emailClaim?.Value);
 
-            if (isSuccsessEmail == null)
+            if (isSuccsess != null)
             {
-                return RedirectToAction("Login");
+                if (isSuccsess.IsDelete == true)
+                {
+                    TempData["LoginSuccess"] = "Block";
+                    return View();
+                }
+                SUser.User = isSuccsess;
+                if (isSuccsess.role.ToLower().Equals("admin"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else if (isSuccsess.role.ToLower().Equals("restaurant"))
+                {
+                    return RedirectToAction("ShowRestaurant", "ShowRestaurant");
+                }
+                else if (isSuccsess.role.ToLower().Equals("user"))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else if (isSuccsessEmail.role.Equals("admin"))
-            {
-                return RedirectToAction("Index");
-            }
-            else if (isSuccsessEmail.role.Equals("restaurant"))
-            {
-                //return RedirectToAction("RestaurantIndex");
-            }
-            return RedirectToAction("Login");
+            TempData["LoginSuccess"] = "False";
+            return View();
         }
 
 

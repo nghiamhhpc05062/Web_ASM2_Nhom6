@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Web_ASM_Nhom6.Service
+@{
+    bool isLogin = SUser.User != null;
+    string username = SUser.User != null && SUser.User.Name != null ? SUser.User.Name : string.Empty;
+}
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,23 +15,26 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style.css">
     <link href="~/css/dangky.css" rel="stylesheet" />
     <link href="~/css/lienhe.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-controller="MyCtrl">
     <header class="bg-danger">
         <div class="container">
             <div class="col-md-12 row">
                 <div class="col-md-9 mx-auto d-flex">
                     <a class="nav-link active text-white" aria-current="page" asp-action="AdminProduct" asp-controller="Product">Kênh Người Bán</a>
-                    <a class="nav-link active text-white" aria-current="page" asp-controller="Restaurant" asp-action="Add">| Trở Thành Người Bán</a>
-                    <a class="nav-link active text-white" aria-current="page" href="#">| Điều Khoản Dịch Vụ</a>
+                    <a class="nav-link active text-white" aria-current="page" asp-controller="Restaurant" asp-action="Add">Trở Thành Người Bán</a>
+                    <a class="nav-link active text-white" aria-current="page" href="#">Điều Khoản Dịch Vụ</a>
                 </div>
-                <div class="col-md-3 mx-auto d-flex">
-                    <a class="nav-link text-white" asp-action="RegisterUser" asp-controller="UserRegister">Đăng ký</a>
-                    <a class="nav-link text-white" asp-action="Login" asp-controller="Login">| Đăng nhập</a>
+                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                    <a class="nav-link text-white" ng-hide="showIsLogin" href="/UserRegister/RegisterUser">Đăng ký</a>
+                    <a class="nav-link text-white" ng-hide="showIsLogin" href="/Login/Login">Đăng nhập</a>
+                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" asp-controller="User" asp-action="Thongtin">Tài khoản: {{userName}}</a>
+                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" href="/Login/Login">Logout</a>
                 </div>
             </div>
             <div class="col-md-12 row">
@@ -40,7 +48,7 @@
                 </div>
                 <div class="col-md-6 bg-danger">
                     <!--search-->
-                    <div class="col-md-12 mx-auto bg-white rounded-pill mt-4">
+                    <div class="col-md-12 mx-auto bg-white rounded-pill mt-3">
                         <form class="d-flex">
                             <div class="input-group">
                                 <input type="text" id="search" name="search" class="form-control rounded-pill mt-1 border-0" placeholder="Search" aria-label="Search">
@@ -56,17 +64,18 @@
                 <div class="col-md-3">
                     <div class="col-md-12 row">
                         <!--Icon Cart-->
-                        <div class="col-md-12 m-3 mt-2">
-                            <a asp-controller="Cart" asp-action="getProductId" asp-route-id="0" class="text-dark">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
-                                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z" />
-                                </svg>
-                            </a>
-                            <a asp-controller="User" asp-action="Thongtin" class="text-dark m-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="65" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                                </svg>
-                            </a>
+                        <div class="col-md-12 row m-3 mt-2">
+                            <div class="col-md-6">
+                                <a asp-controller="Cart" asp-action="getProductId" asp-route-id="0" class="text-white">
+                                    <i class="fa-solid fa-cart-plus" style="font-size:50px"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-controller="User" asp-action="Thongtin" class="text-white m-3">
+                                    <i class="fa-solid fa-user" style="font-size:50px"></i>
+                                </a>
+                            </div>
+                            
                         </div>
                         <!--Icon Cart-->
                     </div>
@@ -105,6 +114,7 @@
 
     <div class="container-fluid mt-5">
         <main role="main" class="pb-3">
+
             @RenderBody()
         </main>
     </div>
@@ -202,6 +212,14 @@
 
     <script type="text/javascript">
         (function (d, m) {
+            var isLogin = @Html.Raw(Json.Serialize(isLogin));
+            var userName = @Html.Raw(Json.Serialize(username));
+            var app = angular.module('MyApp', []);
+            app.controller('MyCtrl', function ($scope) {
+                $scope.showIsLogin = isLogin;
+                $scope.userName = userName;
+                console.log($scope.showIsLogin)
+            });
             var kommunicateSettings =
                 { "appId": "18149a2835fe51448d0096bd2d429765", "popupWidget": true, "automaticChatOpenOnNavigation": true };
             var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
@@ -209,6 +227,10 @@
             var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
             window.kommunicate = m; m._globals = kommunicateSettings;
         })(document, window.kommunicate || {});
+
+    </script>
+    <script>
+        
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
