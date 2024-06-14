@@ -29,7 +29,7 @@ namespace Web_ASM_Nhom6.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(string search, decimal? minPrice, decimal? maxPrice, string city)
+        public async Task<IActionResult> Index(string search, decimal? minPrice, decimal? maxPrice)
         {
             List<Product> products = new List<Product>();
 
@@ -67,7 +67,7 @@ namespace Web_ASM_Nhom6.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> AdminProduct()
+        public async Task<IActionResult> AdminProduct(string search, decimal? minPrice, decimal? maxPrice)
         {
             List<Product> products = new List<Product>();
 
@@ -80,6 +80,26 @@ namespace Web_ASM_Nhom6.Controllers
                 }
             }
 
+            // Filter by search keyword
+            if (!string.IsNullOrEmpty(search))
+            {
+                foreach (var keyword in search.Split(' '))
+                {
+                    products = products.Where(p => p.Name.ToLower().Contains(keyword.ToLower())).ToList();
+                }
+            }
+
+            // Filter by price range
+            if (minPrice.HasValue)
+            {
+                products = products.Where(p => p.Price >= minPrice.Value).ToList();
+            }
+
+            if (maxPrice.HasValue)
+            {
+                products = products.Where(p => p.Price <= maxPrice.Value).ToList();
+            }
+
             return View(products);
         }
 
@@ -87,8 +107,27 @@ namespace Web_ASM_Nhom6.Controllers
 
         //Add
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult>  Add()
         {
+            List<Menu> menus = new List<Menu>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlmenu))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        menus = JsonConvert.DeserializeObject<List<Menu>>(apiResponse);
+                    }
+                    else
+                    {
+                        ViewBag.Error = $"Error: {response.StatusCode}";
+                    }
+                }
+            }
+
+            ViewBag.Menus = menus;
             return View();
         }
         [HttpPost]

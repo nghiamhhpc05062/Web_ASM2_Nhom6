@@ -1,55 +1,70 @@
 ﻿@model Web_ASM_Nhom6.Models.Product
 
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label>
-                <input asp-for="ProductId" class="form-control" />
-                <span asp-validation-for="ProductId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MenuId" class="control-label"></label>
-                <input asp-for="MenuId" class="form-control" />
-                <span asp-validation-for="MenuId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" type="file" id="ImageFile" name="ImageFile" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+@{
+    ViewData["Title"] = "Kênh người bán - Thêm sản phẩm";
+    var listmenus = ViewBag.Menus as List<Menu>;
+}
+
+<div class="container bg-body-secondary col-md-6 m-auto p-3">
+    <h4 class="text-center mt-3">Thêm Sản Phẩm Mới</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Add" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" hidden>
+                    <label asp-for="ProductId" class="control-label"></label>
+                    <input asp-for="ProductId" class="form-control" value="0" />
+                    <span asp-validation-for="ProductId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MenuId" class="control-label"><strong>Menu Sản Phẩm</strong></label>
+                    <select asp-for="MenuId" class="form-control">
+                        <option value="">-- Chọn Menu --</option>
+                        @if (listmenus != null)
+                        {
+                            foreach (var m in listmenus)
+                            {
+                                <option value="@m.MenuId">@m.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="MenuId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"><strong>Tên Sản Phẩm</strong></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"><strong>Ghi Chú Sản Phẩm</strong></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"><strong>Hình Ảnh Sản Phẩm</strong></label>
+                    <input asp-for="Image" type="file" id="ImageFile" name="ImageFile" class="form-control-file" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"><strong>Giá Sản Phẩm</strong></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check" hidden>
+                    <input class="form-check-input" asp-for="IsDelete" />
+                    <label class="form-check-label" for="IsDelete">
+                        @Html.DisplayNameFor(model => model.IsDelete)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Thêm" class="btn btn-primary" />
+                    <a asp-action="AdminProduct" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

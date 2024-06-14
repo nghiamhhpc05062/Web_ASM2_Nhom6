@@ -5,8 +5,8 @@
 }
 
 <div class="container">
-    <hr class="text-danger mb-5 font-weight-bold"/>
-        Tìm kiếm nhiều nhất </h3>
+    <hr / class="text-danger mb-5 font-weight-bold">
+    <h2 class="text-danger mb-5 font-weight-bold">Tìm kiếm nhiều nhất </h2>
     <div class="bg-body-secondary col-md-12 p-3 row">
         <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=canh chua">canh chua</a>
         <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=thịt kho">thịt kho</a>
@@ -20,7 +20,7 @@
 
     <hr / class="border-4 bg-dark">
     <h2 class="text-danger mb-5 font-weight-bold">
-        Danh mục </h3>
+        Danh mục </h2>
 
     <div class="bg-body-secondary col-md-12 p-1 row">
         @foreach (var item in Model.Take(5))
@@ -36,7 +36,7 @@
 
     <hr / class="border-4 bg-dark">
     <h2 class="text-danger mb-5 font-weight-bold">
-        Sản phẩm </h3>
+        Sản phẩm </h2>
 
     <div class="bg-body-secondary col-md-12 p-3 row">
 
@@ -69,18 +69,23 @@
 
     <!--Restaurant-->
 
+</div>
 
+
+<div class="container-fluid">
     <div id="carouselexamplecaptions" class="carousel col-md-12 row">
         <div class="carousel-inner row">
             <div class="carousel-item active">
                 <div class="col-md-12 row m-3">
                     @foreach (var item in Model.Take(15))
                     {
-                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
-                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <h5 class="text-left" >@Html.DisplayFor(modelitem => item.Name)</h5>
-                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                        <div class="col-md-2 mt-3 btn" href="">
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                </div>
+                            </div>
                         </div>
                     }
                 </div>
@@ -89,11 +94,13 @@
                 <div class="col-md-12 row m-auto">
                     @foreach (var item in Model.Skip(15).Take(30))
                     {
-                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
-                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
-                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                        <div class="col-md-2 mt-3 btn" href="">
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                </div>
+                            </div>
                         </div>
                     }
                 </div>
@@ -102,11 +109,13 @@
                 <div class="col-md-12 bg-secondary row m-auto">
                     @foreach (var item in Model.Skip(30).Take(45))
                     {
-                        <div class="col-md-2 mt-3 p-1 m-3 row bg-body-secondary">
-                            <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                            <h5 class="text-left">@Html.DisplayFor(modelitem => item.Name)</h5>
-                            <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Address)</span>
-                            <a class="btn btn-danger col-md-8 m-auto text-white">Đặt Hàng</a>
+                        <div class="col-md-2 mt-3 btn" href="">
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                </div>
+                            </div>
                         </div>
                     }
                 </div>
@@ -117,7 +126,7 @@
             </div>
         </div>
 
-        <div class="carousel col-md-12 mt-3">
+        <div class="carousel col-md-8 mt-3 m-auto">
             <button class="carousel-control-prev bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">previous</span>
@@ -136,7 +145,4 @@
         </div>
 
     </div>
-
-
-
 </div>
