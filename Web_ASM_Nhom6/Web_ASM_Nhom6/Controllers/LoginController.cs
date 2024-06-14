@@ -72,7 +72,7 @@ namespace Web_ASM_Nhom6.Controllers
                 SUser.User = isSuccsess;
                 if (isSuccsess.role.ToLower().Equals("admin"))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Admin", new { Area = "Admin" });
                 }
                 else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
