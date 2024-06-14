@@ -64,12 +64,6 @@ namespace Web_ASM_Nhom6.Controllers
             return View(restaurants);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-
 
         //Trang chủ Fake
         [HttpGet]
