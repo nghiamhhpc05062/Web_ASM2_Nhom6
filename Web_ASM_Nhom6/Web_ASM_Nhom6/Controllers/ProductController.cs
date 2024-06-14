@@ -235,6 +235,26 @@ namespace Web_ASM_Nhom6.Controllers
                     return View("Index", new List<Product>());
                 }
             }
+
+            List<Menu> menus = new List<Menu>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlmenu))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        menus = JsonConvert.DeserializeObject<List<Menu>>(apiResponse);
+                    }
+                    else
+                    {
+                        ViewBag.Error = $"Error: {response.StatusCode}";
+                    }
+                }
+            }
+
+            ViewBag.Menus = menus;
             return View(products);
         }
 
