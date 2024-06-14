@@ -1,9 +1,9 @@
-
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
-using Web_ASM_Nhom6.Service;
 
 
 namespace Web_ASM_Nhom6.Controllers
@@ -22,13 +21,15 @@ namespace Web_ASM_Nhom6.Controllers
     public class ProductController : Controller
     {
 
+        //
         private string url = "http://localhost:29015/api/Product";
+        //
         private string urlmenu = "http://localhost:29015/api/Menu";
         private string urlrestaurant = "http://localhost:29015/api/Restaurant";
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(string search, decimal? minPrice, decimal? maxPrice, string city)
+        public async Task<IActionResult> Index(string search, decimal? minPrice, decimal? maxPrice)
         {
             List<Product> products = new List<Product>();
 
@@ -65,16 +66,73 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> AdminProduct(string search, decimal? minPrice, decimal? maxPrice)
+        {
+            List<Product> products = new List<Product>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                }
+            }
+
+            // Filter by search keyword
+            if (!string.IsNullOrEmpty(search))
+            {
+                foreach (var keyword in search.Split(' '))
+                {
+                    products = products.Where(p => p.Name.ToLower().Contains(keyword.ToLower())).ToList();
+                }
+            }
+
+            // Filter by price range
+            if (minPrice.HasValue)
+            {
+                products = products.Where(p => p.Price >= minPrice.Value).ToList();
+            }
+
+            if (maxPrice.HasValue)
+            {
+                products = products.Where(p => p.Price <= maxPrice.Value).ToList();
+            }
+
+            return View(products);
+        }
+
+
+
         //Add
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult>  Add()
         {
+            List<Menu> menus = new List<Menu>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlmenu))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        menus = JsonConvert.DeserializeObject<List<Menu>>(apiResponse);
+                    }
+                    else
+                    {
+                        ViewBag.Error = $"Error: {response.StatusCode}";
+                    }
+                }
+            }
+
+            ViewBag.Menus = menus;
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Add(Product product, IFormFile ImageFile)
         {
-          
             if (ImageFile != null && ImageFile.Length > 0)
             {
                 var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
@@ -251,6 +309,9 @@ namespace Web_ASM_Nhom6.Controllers
                     }
                 }
             }
+
+
+
             return View(getidproduct);
         }
 
