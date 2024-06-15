@@ -10,6 +10,7 @@ namespace Web_ASM_Nhom6.Models
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string role { get; set; }
         public bool IsDelete { get; set; }
         public ICollection<Review> Reviews { get; set; }
 
