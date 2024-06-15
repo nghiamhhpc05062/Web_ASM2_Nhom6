@@ -39,19 +39,19 @@
             <h2 class="mb-4">Đơn hàng</h2>
             <hr>
             <div class="card mb-4">
-                <div class="card-body">
+                <div class="card-body" id="cartItems">
                     @foreach (var item in Model)
                     {
                         <div class="row mb-3">
-                            <input hidden id="prodId" value="@item.ProductId" />
+                            <input type="hidden" class="prodId" value="@item.ProductId" />
                             <div class="col-4">
                                 <img src="@Url.Content("~/image/"+item.Image)" alt="Sản Phẩm" width="50px" height="50px" />
                             </div>
                             <div class="col-4">
-                                @item.Name <span class="sl">(x1)</span>
-                                <div class="thuoc-tinh"></div>
+                                <span class="prodName">@item.Name</span>
+                                <span class="sl">(x1)</span>
                             </div>
-                            <div class="col-4 text-end">@item.Price.ToString("#,###") VNĐ</div>
+                            <div class="col-4 text-end"><span class="prodPrice">@item.Price.ToString("#,###")</span> VNĐ</div>
                         </div>
                         {
                             Total += item.Price;
@@ -62,7 +62,6 @@
             <div class="mb-4">
                 <h3 class="mb-0">Tổng cộng: <span id="cart_total_money">@Total.ToString("#,###") VNĐ</span></h3>
             </div>
-
             <div>
                 <button type="button" id="btnSuccess" class="btn btn-primary">Đặt hàng</button>
             </div>
@@ -71,23 +70,49 @@
 </div>
 <script>
     $(document).ready(function () {
+       
         $("#btnSuccess").click(function (e) {
             e.preventDefault();
-            var prodId = $("#prodId").val();
-            var total = $("cart_total_money").val();
+            var products = [];
+
+            $("#cartItems .row").each(function () {
+                var prodId = $(this).find(".prodId").val();
+                var prodPrice = $(this).find(".prodPrice").text().replace(/\D/g, '');
+                var prodName = $(this).find(".prodName").text();
+                var prodQuantity = 1;
+
+                if (prodId && prodPrice && prodName) {
+                    products.push({
+                        ProductId: prodId,
+                        ProdPrice: parseInt(prodPrice),
+                        ProdName: prodName,
+                        ProdQuantity: parseInt(prodQuantity)
+                    });
+                }
+            });
+
+            var cartTotal = $("#cart_total_money").text().replace(/\D/g, '');
+            var orders = {
+                Products: products,
+                Total: parseInt(cartTotal)
+            };
+
             $.ajax({
-                type: "POST",
                 url: "/Payments/SaveOrder",
-                data: { ProductId: prodId, Total: total },
+                type: "POST",
+                data: JSON.stringify(orders),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (response) {
+                    console.log(response);
                     if (response && response.redirectUrl) {
                         Swal.fire({
                             title: "Thành công",
                             text: "Đặt hàng thành công",
                             icon: "success",
                         }).then((result) => {
-                            if (result.isConfirmed == true || result.isDismissed == false) {
-                                window.location.href = '@Url.Action("Index", "Home")';
+                            if (result.isConfirmed || result.isDismissed) {
+                                window.location.href = response.redirectUrl;
                             }
                         });
                     } else {
@@ -96,8 +121,9 @@
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
+                    alert("Đã xảy ra lỗi khi gửi yêu cầu đặt hàng.");
                 }
             });
-        })
+        });
     });
 </script>

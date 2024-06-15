@@ -1,5 +1,8 @@
-﻿@model Web_ASM_Nhom6.Service.SProduct
-
+﻿@using Web_ASM_Nhom6.Service
+@model SProduct
+@{
+    bool isProduct = Model.Products != null;
+}
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col">
@@ -53,9 +56,17 @@
                 <br>
                 <div class="mb-3">
                     <a class="btn btn-success" asp-action="Index" asp-controller="Product"><i class="fas fa-arrow-left"></i> Tiếp tục mua hàng</a>
-                    <a class="btn btn-primary" asp-action="Index" asp-controller="Payments"><i class="fas fa-share"></i> Thanh toán</a>
+                    <a class="btn btn-primary" asp-action="Index" ng-disable="showPayments" asp-controller="Payments"><i class="fas fa-share"></i> Thanh toán</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var isProduct = @Html.Raw(Json.Serialize(isProduct));
+    var app = angular.module('MyApp', []);
+    app.controller('MyCtrl', function ($scope) {
+        $scope.showPayments = isProduct;
+        console.log($scope.showPayments);
+    });
+</script>
