@@ -44,6 +44,7 @@ namespace Web_ASM_Nhom6.Controllers
 
         public IActionResult Login()
         {
+            SUser.User = null;
             return View();
         }
 

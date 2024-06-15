@@ -20,5 +20,11 @@ namespace Web_ASM_Nhom6.Controllers
                 return View(new List<Product>());
             }
         }
+
+        [HttpPost]
+        public IActionResult SaveOrder()
+        {
+            return View();
+        }
     }
 }

@@ -12,22 +12,22 @@
             <hr>
             <div class="mb-3">
                 <label for="fullname" class="form-label">Họ và tên</label>
-                <input type="text" class="form-control" readonly value="@SUser.User.Name" id="fullname" name="fullname">
+                <input type="text" class="form-control" value="@SUser.User.Name" id="fullname" name="fullname">
             </div>
 
             <div class="mb-3">
                 <label for="phone" class="form-label">Số điện thoại</label>
-                <input type="text" class="form-control" readonly value="@SUser.User.Phone" id="phone" name="phone">
+                <input type="text" class="form-control" value="@SUser.User.Phone" id="phone" name="phone">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" readonly value="@SUser.User.Email" id="email" name="email">
+                <input type="text" class="form-control" value="@SUser.User.Email" id="email" name="email">
             </div>
 
             <div class="mb-3">
                 <label for="address" class="form-label">Địa chỉ</label>
-                <input type="text" class="form-control" readonly value="@SUser.User.Address" id="address" name="address">
+                <input type="text" class="form-control" value="@SUser.User.Address" id="address" name="address">
             </div>
 
             <div class="mb-3">
@@ -43,6 +43,7 @@
                     @foreach (var item in Model)
                     {
                         <div class="row mb-3">
+                            <input hidden id="prodId" value="@item.ProductId" />
                             <div class="col-4">
                                 <img src="@Url.Content("~/image/"+item.Image)" alt="Sản Phẩm" width="50px" height="50px" />
                             </div>
@@ -72,13 +73,29 @@
     $(document).ready(function () {
         $("#btnSuccess").click(function (e) {
             e.preventDefault();
-            Swal.fire({
-                title: "Thành công",
-                text: "Đặt hàng thành công",
-                icon: "success",
-            }).then((result) => {
-                if (result.isConfirmed == true || result.isDismissed == false) {
-                    window.location.href = '@Url.Action("Index", "Home")';
+            var prodId = $("#prodId").val();
+            var total = $("cart_total_money").val();
+            $.ajax({
+                type: "POST",
+                url: "/Payments/SaveOrder",
+                data: { ProductId: prodId, Total: total },
+                success: function (response) {
+                    if (response && response.redirectUrl) {
+                        Swal.fire({
+                            title: "Thành công",
+                            text: "Đặt hàng thành công",
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed == true || result.isDismissed == false) {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            }
+                        });
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
                 }
             });
         })

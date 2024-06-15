@@ -1,5 +1,4 @@
-﻿@model Web_ASM_Nhom6.Models.User
-@using Web_ASM_Nhom6.Service
+﻿@using Web_ASM_Nhom6.Service
 
 <div class="container-fluid col-md-12 row vh-100">
     <div class="col-md-3">
@@ -9,10 +8,7 @@
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                 </svg>
             </div>
-            @if (Model != null)
-            {
-                <h3 class="col-md-8 m-auto p-3">@Model.Name</h3>
-            }
+            <h3 class="col-md-8 m-auto p-3">@SUser.User.Name</h3>
         </div>
         <hr class="border-3 bg-dark" />
         <div class="col-md-12 row">

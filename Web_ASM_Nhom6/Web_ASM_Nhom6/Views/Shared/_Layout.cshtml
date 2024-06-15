@@ -31,10 +31,10 @@
                     <a class="nav-link active text-white" aria-current="page" href="#">Điều Khoản Dịch Vụ</a>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center align-items-center">
-                    <a class="nav-link text-white" ng-hide="showIsLogin" href="/UserRegister/RegisterUser">Đăng ký</a>
-                    <a class="nav-link text-white" ng-hide="showIsLogin" href="/Login/Login">Đăng nhập</a>
+                    <a class="nav-link text-white" ng-show="!showIsLogin" href="/UserRegister/RegisterUser">Đăng ký</a>
+                    <a class="nav-link text-white" ng-show="!showIsLogin" href="/Login/Login">Đăng nhập</a>
                     <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" asp-controller="User" asp-action="Thongtin">Tài khoản: {{userName}}</a>
-                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" href="/Login/Login">Logout</a>
+                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" asp-action="Login" asp-controller="Login">Logout</a>
                 </div>
             </div>
             <div class="col-md-12 row">
@@ -218,7 +218,6 @@
             app.controller('MyCtrl', function ($scope) {
                 $scope.showIsLogin = isLogin;
                 $scope.userName = userName;
-                console.log($scope.showIsLogin)
             });
             var kommunicateSettings =
                 { "appId": "18149a2835fe51448d0096bd2d429765", "popupWidget": true, "automaticChatOpenOnNavigation": true };

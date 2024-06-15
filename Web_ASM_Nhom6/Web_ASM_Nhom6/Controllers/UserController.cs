@@ -16,13 +16,13 @@ namespace Web_ASM_Nhom6.Controllers
         private readonly string url = "http://localhost:29015/api/User";
 
         [HttpGet]
-        public async Task<IActionResult> Thongtin()
+        public IActionResult Thongtin()
         {
-            if(SUser.User == null)
+            if (SUser.User == null)
             {
                 return RedirectToAction("Login", "Login");
             }
-            return View(); // Chuyển người dùng tới view
+            return View();
         }
 
         [HttpGet]

@@ -17,7 +17,7 @@ namespace Web_ASM_Nhom6.Controllers
     {
         private readonly string _restaurantUrl = "http://localhost:29015/api/Restaurant";
         private readonly string _categoryUrl = "http://localhost:29015/api/Category";
-        private readonly string userAPI = "https://localhost:44388/api/User";
+        private readonly string userAPI = "http://localhost:29015/api/User";
 
         [HttpGet]
         public async Task<IActionResult> Add()
