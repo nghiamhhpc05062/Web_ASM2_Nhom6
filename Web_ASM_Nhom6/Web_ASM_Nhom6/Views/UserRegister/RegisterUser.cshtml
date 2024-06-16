@@ -15,27 +15,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Tên</label>
-                <input type="text" asp-for="Name" class="form-control" required/>
+                <input type="text" asp-for="Name" class="form-control" title="Vui lòng nhập lại tên" required/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email</label>
-                <input type="email" asp-for="Email" class="form-control" required />
+                <input type="email" asp-for="Email" class="form-control" title="Vui lòng nhập lại email" required />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label">Mật khẩu</label>
-                <input type="password" asp-for="Password" class="form-control" required/>
+                <input type="password" asp-for="Password" class="form-control" title="vui lòng nhập lại mật khẩu" required/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Phone" class="control-label">Số điện thoại</label>
-                <input type="number" asp-for="Phone" class="form-control" required maxlength="10" />
+                <input type="number" asp-for="Phone" class="form-control" title="Số điện thoại phải có đúng 10 chữ số" required minlength="10" maxlength="10" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label">Địa chỉ</label>
-                <input type="text" asp-for="Address" class="form-control" required />
+                <input type="text" asp-for="Address" class="form-control" title="Vui lòng nhập lại địa chỉ" required />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>
