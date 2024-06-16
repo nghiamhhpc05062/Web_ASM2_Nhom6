@@ -13,14 +13,10 @@
         <hr class="border-3 bg-dark" />
         <div class="col-md-12 row">
             <ul class="navbar-nav mx-auto fs-4">
-                <li class="nav-item">
-                    <a class="nav-link active mx-4" aria-current="page" asp-area="" asp-controller="" asp-action="">Tài khoản của tôi</a>
-                </li>
                 <div class="m-4">
-                <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Hồ sơ</a></li>
-                <li><a class="dropdown-item" href="#">Ngân hàng</a></li>
-                <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="ChangeAddress">Đổi địa chỉ</a></li>
-                <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="ChangePassword">Đổi mật khẩu</a></li>
+                <li><a class="dropdown-item" asp-controller="User" asp-action="Histori">Lịch sử mua hàng</a></li>
+                <li><a class="dropdown-item" asp-controller="User" asp-action="ChangeAddress">Đổi địa chỉ</a></li>
+                <li><a class="dropdown-item" asp-controller="User" asp-action="ChangePassword">Đổi mật khẩu</a></li>
                 <!-- Menu hiện tại -->
             </ul>
         </div>

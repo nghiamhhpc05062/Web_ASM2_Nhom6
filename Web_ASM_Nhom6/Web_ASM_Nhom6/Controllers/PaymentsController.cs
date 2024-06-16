@@ -45,7 +45,7 @@ namespace Web_ASM_Nhom6.Controllers
                 TotalAmount = orders.Total,
                 Status = "Đang xử lý",
                 PaymentMethod = "Tiền mặt",
-                DeliveryPerson = "Đăng cute =))",
+                DeliveryPerson = "Usanpool",
                 DeliveryStatus = "Đang giao",
                 DeliveryDate = dateTime,
 

@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<Web_ASM_Nhom6.Models.Product>
 
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success row m-auto mb-2" role="alert">
+        <h5 class="col-md-9">@TempData["SuccessMessage"]</h5>
+        <a href="~/Product/AdminProduct" class="btn btn-danger col-md-3">Đóng</a>
+    </div>
+}
 
 <div class="col-md-12 row container-fluid m-auto">
     <div class="col-md-3">
@@ -30,7 +36,6 @@
         <p class="text-success">Thời gian hoạt động : 8:30 - 21:30 </p>
         <hr / class="border-3 bg-dark">
         <a href="@Url.Action("Add")" class="btn btn-primary"> + Thêm sản phẩm mới</a>
-        <a class="btn btn-danger text-white">yêu thích</a>
     </div>
 </div>
 
@@ -84,7 +89,6 @@
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="@Url.Action("Delete", new { id = item.ProductId })" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </td>
                             </tr>

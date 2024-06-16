@@ -18,6 +18,9 @@ using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using Microsoft.AspNetCore.Http;
 using Web_ASM_Nhom6.Service;
+using System.Net.Http.Json;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace Web_ASM_Nhom6.Controllers
 {
@@ -31,20 +34,9 @@ namespace Web_ASM_Nhom6.Controllers
             _logger = logger;
             _twilioService = twilioService;
         }
-        public async Task<IActionResult> Index()
-        {
-            List<User> users = new List<User>();
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(url);
-            string apiResponse = await response.Content.ReadAsStringAsync();
-            users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-
-            return View(users);
-        }
 
         public IActionResult Login()
         {
-            SUser.User = null;
             return View();
         }
 
@@ -77,7 +69,7 @@ namespace Web_ASM_Nhom6.Controllers
                 }
                 else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
-                    return RedirectToAction("ShowRestaurant","ShowRestaurant");
+                    return RedirectToAction("AdminProduct", "Product");
                 }
                 else if (isSuccsess.role.ToLower().Equals("user"))
                 {
@@ -127,11 +119,11 @@ namespace Web_ASM_Nhom6.Controllers
                 SUser.User = isSuccsess;
                 if (isSuccsess.role.ToLower().Equals("admin"))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Admin", new { Area = "Admin" });
                 }
                 else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
-                    return RedirectToAction("ShowRestaurant", "ShowRestaurant");
+                    return RedirectToAction("AdminProduct", "Product");
                 }
                 else if (isSuccsess.role.ToLower().Equals("user"))
                 {
@@ -139,7 +131,7 @@ namespace Web_ASM_Nhom6.Controllers
                 }
             }
             TempData["LoginSuccess"] = "False";
-            return View();
+            return RedirectToAction("Login");
         }
 
         public async Task SignInWithFacebook()
@@ -160,10 +152,7 @@ namespace Web_ASM_Nhom6.Controllers
             var response = await httpClient.GetAsync(url);
             string apiResponse = await response.Content.ReadAsStringAsync();
             users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-            foreach (var claim in result.Principal.Claims)
-            {
-                Console.WriteLine($"Type: {claim.Type}, Value: {claim.Value}");
-            }
+
             var emailClaim = result.Principal.FindFirst(ClaimTypes.Email);
             if (emailClaim == null)
             {
@@ -182,22 +171,96 @@ namespace Web_ASM_Nhom6.Controllers
                 SUser.User = isSuccsess;
                 if (isSuccsess.role.ToLower().Equals("admin"))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Admin", new { Area = "Admin" });
                 }
                 else if (isSuccsess.role.ToLower().Equals("restaurant"))
                 {
-                    return RedirectToAction("ShowRestaurant", "ShowRestaurant");
+                    return RedirectToAction("AdminProduct", "Product");
                 }
-                else if (isSuccsess.role.ToLower().Equals("user"))
+                else
                 {
                     return RedirectToAction("Index", "Home");
                 }
             }
-            TempData["LoginSuccess"] = "False";
+            else
+            {
+                var newUser = new User
+                {
+                    Email = emailClaim.Value,
+                    Name = result.Principal.FindFirst(ClaimTypes.Name)?.Value,
+                    role = "user",
+                    IsDelete = false
+                };
+                var postResponse = await httpClient.PostAsJsonAsync(url, newUser);
+                postResponse.EnsureSuccessStatusCode();
+
+                List<User> usersNew = new List<User>();
+                var responseNew = await httpClient.GetAsync(url);
+                string apiResponseNew = await responseNew.Content.ReadAsStringAsync();
+                usersNew = JsonConvert.DeserializeObject<List<User>>(apiResponseNew);
+
+                var lastUser = usersNew.LastOrDefault();
+
+                if (lastUser != null)
+                {
+                    SUser.User = lastUser;
+                    return RedirectToAction("UpdateInfor", "Login"); 
+                }
+                else
+                {
+                    TempData["LoginSuccess"] = "False";
+                    return RedirectToAction("Login");
+                }
+            }
+        }
+
+        public IActionResult UpdateInfor()
+        {
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateInfor(UpdateInfor user)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["UpdateUser"] = "Null";
+                return View(user);
+            }
 
+            using (var httpClient = new HttpClient())
+            {
+                List<User> usersNew = new List<User>();
+                var responseNew = await httpClient.GetAsync(url);
+                string apiResponseNew = await responseNew.Content.ReadAsStringAsync();
+                usersNew = JsonConvert.DeserializeObject<List<User>>(apiResponseNew);
+                var lastUser = usersNew.LastOrDefault();
+
+                var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var response = await httpClient.PutAsync($"{url}/{lastUser.UserId}", content);
+                response.EnsureSuccessStatusCode();
+
+                List<User> userUpdate = new List<User>();
+                var responseNewUpdate = await httpClient.GetAsync(url);
+                string apiResponseNewUpdate = await responseNewUpdate.Content.ReadAsStringAsync();
+                userUpdate = JsonConvert.DeserializeObject<List<User>>(apiResponseNewUpdate);
+
+                var lastUserNew = userUpdate.LastOrDefault();
+
+                if (lastUserNew != null)
+                {
+                    SUser.User = lastUserNew;
+                    ViewData["UpdateUser"] = "Succsess";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewData["UpdateUser"] = "NotSuccsess";
+                    return View(user);
+                }
+            }
+        }
         public IActionResult SignInWithPhoneNumber()
         {
             return View();
@@ -220,11 +283,11 @@ namespace Web_ASM_Nhom6.Controllers
             return random.Next(100000, 999999).ToString();
         }
 
-        [HttpPost]
         public async Task<IActionResult> Logout()
         {
+            SUser.User = null;
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }

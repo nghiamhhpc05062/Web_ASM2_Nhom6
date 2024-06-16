@@ -1,13 +1,11 @@
 ﻿@model Web_ASM_Nhom6.Models.Product
 
-
-
 <div class="container">
 
 
     <div class="col-md-12 row container">
         <div class="col-md-4">
-            <img class="p-1 m-auto" src="@Url.Content("~/image/"+Model.Image)" alt="Alternate Text" width="330px" height="370px" />
+            <img class="p-1 m-auto" src="@Html.DisplayFor(item => item.Image)" alt="Alternate Text" width="330px" height="370px" />
         </div>
         <div class="col-md-8">
             <p class="text-primary fs-5">Địa chỉ >> <span>aaa</span> </p>
@@ -31,7 +29,7 @@
             </div>
             <h3>@Html.DisplayFor(model => model.Name)</h3>
             <p>Thời gian hoạt động : 8:30 - 21:30 </p>
-            <p>Giá sản phẩm : @Html.DisplayFor(model => model.Price)0đ</p>
+            <p>Giá sản phẩm : @Model.Price.ToString("0,00#") VNĐ</p>
             <hr / class="border-3 bg-dark">
             <div class="col-md-12 row">
                 <div class="col-md-4 text-center">

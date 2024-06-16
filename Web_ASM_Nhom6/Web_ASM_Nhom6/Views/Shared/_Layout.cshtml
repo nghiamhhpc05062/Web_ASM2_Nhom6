@@ -2,6 +2,7 @@
 @{
     bool isLogin = SUser.User != null;
     string username = SUser.User != null && SUser.User.Name != null ? SUser.User.Name : string.Empty;
+    string role = SUser.User != null && SUser.User.role != null ? SUser.User.role : string.Empty;
 }
 <!DOCTYPE html>
 <html lang="en" ng-app="MyApp">
@@ -24,20 +25,20 @@
 <body ng-controller="MyCtrl">
     <header class="bg-danger">
         <div class="container">
-            <div class="col-md-12 row">
+            <div class="row">
                 <div class="col-md-9 mx-auto d-flex">
-                    <a class="nav-link active text-white" aria-current="page" asp-action="AdminProduct" asp-controller="Product">Kênh Người Bán</a>
+                    <a class="nav-link active text-white" aria-current="page" ng-show="isRestaurant" asp-action="AdminProduct" asp-controller="Product">Kênh Người Bán</a>
                     <a class="nav-link active text-white" aria-current="page" asp-controller="Restaurant" asp-action="Add">Trở Thành Người Bán</a>
                     <a class="nav-link active text-white" aria-current="page" href="#">Điều Khoản Dịch Vụ</a>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center align-items-center">
                     <a class="nav-link text-white" ng-show="!showIsLogin" href="/UserRegister/RegisterUser">Đăng ký</a>
                     <a class="nav-link text-white" ng-show="!showIsLogin" href="/Login/Login">Đăng nhập</a>
-                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" asp-controller="User" asp-action="Thongtin">Tài khoản: {{userName}}</a>
-                    <a class="nav-link text-white font-weight-bold" ng-show="showIsLogin" asp-action="Login" asp-controller="Login">Logout</a>
+                    <a class="nav-link text-white overflow-ellipsis" ng-show="showIsLogin" asp-controller="User" asp-action="Thongtin">Tài khoản: {{userName}}</a>
+                    <a class="nav-link text-white" ng-show="showIsLogin" asp-action="Logout" asp-controller="Login">Logout</a>
                 </div>
             </div>
-            <div class="col-md-12 row">
+            <div class="row ">
                 <div class="col-md-3">
                     <!--Logo-->
                     <svg width="" height="" viewBox="0 0 270 71" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,10 +63,10 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="col-md-12 row">
+                    <div class="row">
                         <!--Icon Cart-->
-                        <div class="col-md-12 row m-3 mt-2">
-                            <div class="col-md-6">
+                        <div class="row d-flex justify-content-center align-items-center m-3 mt-2">
+                            <div class="col-md-4">
                                 <a asp-controller="Cart" asp-action="getProductId" asp-route-id="0" class="text-white">
                                     <i class="fa-solid fa-cart-plus" style="font-size:50px"></i>
                                 </a>
@@ -213,10 +214,16 @@
         (function (d, m) {
             var isLogin = @Html.Raw(Json.Serialize(isLogin));
             var userName = @Html.Raw(Json.Serialize(username));
+            var role = @Html.Raw(Json.Serialize(role));
+            var isRestaurant = false;
+            if (role == "restaurant"){
+                isRestaurant = true;
+            }
             var app = angular.module('MyApp', []);
             app.controller('MyCtrl', function ($scope) {
                 $scope.showIsLogin = isLogin;
                 $scope.userName = userName;
+                $scope.isRestaurant = isRestaurant;
             });
             var kommunicateSettings =
                 { "appId": "18149a2835fe51448d0096bd2d429765", "popupWidget": true, "automaticChatOpenOnNavigation": true };

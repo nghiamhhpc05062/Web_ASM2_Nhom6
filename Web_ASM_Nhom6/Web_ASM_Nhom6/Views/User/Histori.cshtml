@@ -1,0 +1,41 @@
+﻿@using Web_ASM_Nhom6.Service
+
+<div class="col-md-8">
+    <h2 class="mb-4">Lịch sử mua hàng</h2>
+    <hr>
+    @foreach (var order in SHistori.Orders)
+    {
+        var orderItems = SHistori.OrderItems.Where(oi => oi.OrderId == order.OrderId).ToList();
+        var products = SHistori.Products.Where(p => orderItems.Any(oi => oi.ProductId == p.ProductId)).ToList();
+
+        foreach (var orderItem in orderItems)
+        {
+            var product = products.FirstOrDefault(p => p.ProductId == orderItem.ProductId);
+            if (product != null)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <img src="@Url.Content(product.Image)" alt="Sản Phẩm" width="50px" height="50px" />
+                            </div>
+                            <div class="col-3">
+                                <span class="prodName">@product.Name</span>
+                                <span class="sl">(x1)</span>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="prodPrice">@orderItem.Price.ToString("#,###")</span> VNĐ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="mb-4">
+            <h3 class="mb-0">Tổng cộng: <span id="cart_total_money">@order.TotalAmount.ToString("#,###") VNĐ</span></h3>
+        </div>
+        <div class="mb-4">
+            <a type="button" asp-action="Index" asp-controller="Product" class="btn btn-primary">Đặt lại</a>
+        </div>
+    }
+</div>

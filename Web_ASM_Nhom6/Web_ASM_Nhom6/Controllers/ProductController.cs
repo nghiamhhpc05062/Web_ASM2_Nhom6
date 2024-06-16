@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -10,10 +7,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
+using Web_ASM_Nhom6.Service;
 
 
 namespace Web_ASM_Nhom6.Controllers
@@ -69,10 +66,16 @@ namespace Web_ASM_Nhom6.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminProduct(string search, decimal? minPrice, decimal? maxPrice)
         {
+            if (SUser.User == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<Product> products = new List<Product>();
 
             using (var httpClient = new HttpClient())
             {
+
                 using (var response = await httpClient.GetAsync(url))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -167,53 +170,12 @@ namespace Web_ASM_Nhom6.Controllers
                     }
                 }
 
-                return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "Sản phẩm đã được thêm thành công!";
+            return RedirectToAction("AdminProduct", "Product");
             }
 
-            return RedirectToAction("Index");
-        }
-
-
-
-        //Delete
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            Product products = new Product();
-            using (var httpClient = new HttpClient())
-            {
-                HttpResponseMessage response = await httpClient.GetAsync($"{url}/{id}");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    products = JsonConvert.DeserializeObject<Product>(apiResponse);
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
-                    return View("Index", new List<Category>());
-                }
-            }
-            return View(products);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                HttpResponseMessage response = await httpClient.DeleteAsync($"{url}/{id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
-                    return View("Delete", new Product { ProductId = id });
-                }
-            }
+            TempData["SuccessMessage"] = "Sản phẩm đã được thêm thành công!";
+            return RedirectToAction("AdminProduct", "Product");
         }
 
         //Update
@@ -232,9 +194,29 @@ namespace Web_ASM_Nhom6.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
-                    return View("Index", new List<Product>());
+                    return View("AdminProduct", new List<Product>());
                 }
             }
+
+            List<Menu> menus = new List<Menu>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(urlmenu))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        menus = JsonConvert.DeserializeObject<List<Menu>>(apiResponse);
+                    }
+                    else
+                    {
+                        ViewBag.Error = $"Error: {response.StatusCode}";
+                    }
+                }
+            }
+
+            ViewBag.Menus = menus;
             return View(products);
         }
 
@@ -278,7 +260,8 @@ namespace Web_ASM_Nhom6.Controllers
                     HttpResponseMessage response = await httpClient.PutAsync($"{url}/{product.ProductId}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        return RedirectToAction("Index");
+                        TempData["SuccessMessage"] = "Sản phẩm đã được sửa thành công!";
+                        return RedirectToAction("AdminProduct");
                     }
                     else
                     {

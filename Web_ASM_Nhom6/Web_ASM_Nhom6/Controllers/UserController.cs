@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Http.Headers;
 using Web_ASM_Nhom6.Service;
+using System.Linq;
 
 namespace Web_ASM_Nhom6.Controllers
 {
@@ -14,6 +15,9 @@ namespace Web_ASM_Nhom6.Controllers
     {
         // URL của API
         private readonly string url = "http://localhost:29015/api/User";
+        private readonly string urlOrderItem = "http://localhost:29015/api/OrderItem";
+        private readonly string urlOrder = "http://localhost:29015/api/Order";
+        private readonly string urlProduct = "http://localhost:29015/api/Product";
 
         [HttpGet]
         public IActionResult Thongtin()
@@ -64,33 +68,33 @@ namespace Web_ASM_Nhom6.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> ChangeAddress(ChangeAddressModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ViewBag.ErrorMessage = "Thông tin không hợp lệ.";
-        //        return View(model);
-        //    }
+        public async Task<IActionResult> Histori()
+        {
+            var httpClient = new HttpClient();
 
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-        //        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var orderItemsTask = httpClient.GetStringAsync(urlOrderItem);
+            var ordersTask = httpClient.GetStringAsync(urlOrder);
+            var productsTask = httpClient.GetStringAsync(urlProduct);
 
-        //        var response = await httpClient.PutAsync($"{url}/ChangeAddress", content); // Cập nhật endpoint tùy theo API của bạn
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            ViewBag.SuccessMessage = "Địa chỉ đã được cập nhật thành công.";
-        //            return View();
-        //        }
-        //        else
-        //        {
-        //            ViewBag.ErrorMessage = "Có lỗi xảy ra. Vui lòng thử lại.";
-        //            return View(model);
-        //        }
-        //    }
-        //}
+            await Task.WhenAll(orderItemsTask, ordersTask, productsTask);
+
+            var orderItems = JsonConvert.DeserializeObject<List<OrderItem>>(await orderItemsTask);
+            var orders = JsonConvert.DeserializeObject<List<Order>>(await ordersTask);
+            var products = JsonConvert.DeserializeObject<List<Product>>(await productsTask);
+
+            var listOrderUser = orders.Where(order => order.UserId == SUser.User.UserId).ToList();
+
+            var listOrderItemOrder = orderItems.Where(item => listOrderUser.Any(order => order.OrderId == item.OrderId)).ToList();
+
+            var listProduct = products.Where(prod => listOrderItemOrder.Any(orderItem => orderItem.ProductId == prod.ProductId)).ToList();
+
+            SHistori.Orders = listOrderUser;
+            SHistori.OrderItems = listOrderItemOrder;
+            SHistori.Products = listProduct;
+
+            return View();
+        }
+
     }
 }
 
