@@ -25,7 +25,6 @@ namespace Web_ASM_Nhom6.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();
@@ -36,24 +35,25 @@ namespace Web_ASM_Nhom6.Controllers
         {
             if (!ModelState.IsValid || model.NewPassword != model.ConfirmPassword)
             {
-                ViewBag.ErrorMessage = "Thông tin không hợp lệ hoặc mật khẩu không khớp.";
+                ViewData["ChagePass"] = "Null";
                 return View(model);
             }
 
             using (var httpClient = new HttpClient())
             {
-                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                SUser.User.Password = model.NewPassword;
+                var content = new StringContent(JsonConvert.SerializeObject(SUser.User), Encoding.UTF8, "application/json");
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                var response = await httpClient.PutAsync($"{url}/ChangePassword", content); // Cập nhật endpoint tùy theo API của bạn
+                
+                var response = await httpClient.PutAsync($"{url}/{SUser.User.UserId}", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    ViewBag.SuccessMessage = "Đổi mật khẩu thành công.";
+                    ViewData["ChagePass"] = "Succsess";
                     return View();
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Có lỗi xảy ra. Vui lòng thử lại.";
+                    ViewData["ChagePass"] = "NotSuccsess";
                     return View(model);
                 }
             }

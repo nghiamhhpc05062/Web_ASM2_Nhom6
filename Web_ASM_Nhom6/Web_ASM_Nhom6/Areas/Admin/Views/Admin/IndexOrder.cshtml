@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Web_ASM_Nhom6.Models.Order>
+
+@{
+    ViewData["Title"] = "IndexOrder";
+}
+<div class="container">
+    <h1 class="text-center">Quản lý Order</h1>
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Thêm mới</a>
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeliveryStatus)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.OrderDate)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.TotalAmount);
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.DeliveryPerson)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.DeliveryDate)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.DeliveryStatus)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.OrderId">Cập nhật thông tin User</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

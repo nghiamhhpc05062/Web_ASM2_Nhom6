@@ -12,6 +12,7 @@ namespace Web_ASM_Nhom6.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         string urlUser = "http://localhost:29015/api/User";
+        string urlOrder = "http://localhost:29015/api/Order";
         [Route("/Admin/")]
         public IActionResult Index()
         {
@@ -28,9 +29,18 @@ namespace Web_ASM_Nhom6.Areas.Admin.Controllers
             users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
             return View(users);
         }
-        public IActionResult CreateUser()
+        [Route("/Admin/IndexOrder")]
+        public async Task<IActionResult> IndexOrder()
         {
-            return View();
+            List<Order> order = new List<Order>();
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(urlOrder);
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            order = JsonConvert.DeserializeObject<List<Order>>(apiResponse);
+
+
+            
+            return View(order);
         }
 
     }
