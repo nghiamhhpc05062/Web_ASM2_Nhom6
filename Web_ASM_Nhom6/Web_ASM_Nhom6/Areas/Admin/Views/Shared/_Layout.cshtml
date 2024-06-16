@@ -38,7 +38,7 @@
                             <span class="hide-menu">Quản lý</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="IndexUser" asp-controller="Admin" asp-area="Admin" aria-expanded="false">
+                            <a class="sidebar-link" asp-action="GetAll" asp-controller="UserAdmin" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-users"></i>
                                 </span>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Order" aria-expanded="false">
+                            <a class="sidebar-link" asp-action="IndexOrder" asp-controller="Admin" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Review" aria-expanded="false">
+                            <a class="sidebar-link" asp-action="GetAll" asp-controller="Review" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-star"></i>
                                 </span>
@@ -62,21 +62,21 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Category" aria-expanded="false">
+                            <a class="sidebar-link" asp-action="GetAll" asp-controller="Category" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-list"></i>
                                 </span>
                                 <span class="hide-menu">Restaurant Category</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Voucher" aria-expanded="false">
+                        @* <li class="sidebar-item">
+                            <a class="sidebar-link" asp-action="GetAll" asp-controller="Voucher" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-ticket"></i>
                                 </span>
                                 <span class="hide-menu">Voucher</span>
                             </a>
-                        </li>
+                        </li> *@
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -136,7 +136,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            @RenderBody();
+                            @RenderBody()
                         </div>
                     </div>
                 </div>

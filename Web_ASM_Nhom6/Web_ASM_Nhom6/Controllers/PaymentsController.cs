@@ -37,16 +37,17 @@ namespace Web_ASM_Nhom6.Controllers
             {
                 return BadRequest("Invalid order data.");
             }
+            var dateTime = DateTime.Now;
             var order = new Order()
             {
                 UserId = SUser.User.UserId,
-                OrderDate = DateTime.Now,
+                OrderDate = dateTime,
                 TotalAmount = orders.Total,
                 Status = "Đang xử lý",
                 PaymentMethod = "Tiền mặt",
                 DeliveryPerson = "Đăng cute =))",
                 DeliveryStatus = "Đang giao",
-                DeliveryDate = DateTime.Now,
+                DeliveryDate = dateTime,
 
             };
             var httpClient = new HttpClient();

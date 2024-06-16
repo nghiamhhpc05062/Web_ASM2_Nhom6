@@ -1,0 +1,61 @@
+﻿@model Web_ASM_Nhom6.Models.Category
+
+<div class="container bg-body-secondary col-md-6 m-auto p-3">
+    <h4 class="text-center mt-3">Sửa Danh Mục</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="SaveEdit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <input asp-for="CategoryId" class="form-control" readonly />
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Lưu" class="btn btn-primary" id="saveBtn" />
+                    <a class="btn btn-secondary" asp-action="GetAll">Quay lại</a>
+                </div>
+            </form>
+            <!-- Modal -->
+            <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="errorModalLabel">Lỗi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Không được bỏ trống thông tin
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var saveBtn = document.getElementById('saveBtn');
+    saveBtn.addEventListener('click', function (event) {
+        var nameInput = document.getElementById('Name');
+        if (!nameInput.checkValidity()) {
+            event.preventDefault();
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        }
+    });
+</script>

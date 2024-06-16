@@ -1,0 +1,61 @@
+﻿@model Web_ASM_Nhom6.Models.Category
+
+
+
+<div class="container bg-body-secondary col-md-6 m-auto p-3">
+    <h4 class="text-center mt-3">Thêm Danh Mục Mới</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="SaveAdd" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" hidden>
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <input asp-for="CategoryId" class="form-control" value="0" />
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"><strong>Tên Danh Mục</strong></label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary" id="createBtn">Tạo Mới</button>
+                        <a class="btn btn-secondary" asp-action="GetAll">Quay lại</a>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Modal -->
+            <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="errorModalLabel">Lỗi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Không được bỏ trống thông tin
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var createBtn = document.getElementById('createBtn');
+    createBtn.addEventListener('click', function (event) {
+        var nameInput = document.getElementById('Name');
+        if (!nameInput.checkValidity()) {
+            event.preventDefault();
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        }
+    });
+</script>

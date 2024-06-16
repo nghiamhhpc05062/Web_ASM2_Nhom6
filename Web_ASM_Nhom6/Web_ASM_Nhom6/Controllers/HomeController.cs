@@ -9,7 +9,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
-using static System.Net.WebRequestMethods;
 
 namespace Web_ASM_Nhom6.Controllers
 {
