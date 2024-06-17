@@ -34,40 +34,25 @@
     </div>
 </div>
 
+
+
 <div class="container bg-body-secondary p-3">
     <h2 class="text-danger font-weight-bold mt-5">
         Cửa hàng nổi bật
     </h2>
     <div class="container bg-body-secondary m-auto">
         <div class="col-md-12 p-3 row">
-            <div class="col-md-2 m-2">
-                <label for="citySelect" class="form-label font-weight-bold">Thành phố</label>
-                <select id="citySelect" class="form-select">
-                    <option value="">--Thành Phố--</option>
-                    @{
-                        var uniqueAddresses = Model.Select(city => city.Address).Distinct();
-                        foreach (var address in uniqueAddresses)
-                        {
-                            <option>@address</option>
-                        }
-                    }
-                </select>
+            <div class="col-md-12">
+                <form method="get" action="@Url.Action("Index", "Home")" onsubmit="saveFormValues(event)">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="search" name="search" placeholder="Tìm kiếm theo thành phố" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+                            <button class="btn btn-secondary" type="button" href="~/Home/Index">Đặt lại</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="col-md-2 m-2">
-                <label for="categorySelect" class="form-label font-weight-bold">Danh Mục</label>
-                <select id="categorySelect" class="form-select">
-                    <option value="">--Danh Mục--</option>
-                    @{
-                        var uniqueCategory = Model.Select(cate => cate.Category.Name).Distinct();
-                        foreach (var categoryName in uniqueCategory)
-                        {
-                            <option>@categoryName</option>
-                        }
-                    }
-                </select>
-            </div>
-        </div>
     </div>
     <div id="carouselexamplecaptions" class="carousel col-md-12 row">
         <div class="carousel-inner row">
@@ -152,3 +137,23 @@
     </div>
 </div>
 
+<script>
+    function saveFormValues(event) {
+        event.preventDefault();
+
+        var searchInput = document.getElementById("search");
+
+        localStorage.setItem("searchValue", searchInput.value);
+
+        event.target.submit();
+    }
+    function setFormValues() {
+        var searchInput = document.getElementById("search");
+
+        var searchValue = localStorage.getItem("searchValue");
+
+        searchInput.value = searchValue;
+    }
+
+    setFormValues();
+</script>

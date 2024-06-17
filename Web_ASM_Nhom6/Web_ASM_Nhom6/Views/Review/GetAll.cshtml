@@ -1,53 +1,50 @@
 ﻿@model IEnumerable<Web_ASM_Nhom6.Models.Review>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ReviewId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReviewDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success col-md-8 m-auto row mb-2" role="alert">
+        <h5 class="col-md-11">@TempData["SuccessMessage"]</h5>
+        <a href="~/Review/GetAll" class="btn btn-danger col-md-1">Đóng</a>
+    </div>
 }
-    </tbody>
-</table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a asp-action="Add" class="btn btn-primary mt-3">Thêm review mới</a>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <table class="table table-striped table-borderless">
+                <thead>
+                    <tr>
+                        <th>ReviewId</th>
+                        <th>ProductId</th>
+                        <th>UserId</th>
+                        <th>Rating</th>
+                        <th>ReviewDate</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ReviewId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ReviewDate)</td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.UserId })" class="btn btn-primary">Sửa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

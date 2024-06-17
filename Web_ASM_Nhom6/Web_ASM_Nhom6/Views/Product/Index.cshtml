@@ -16,53 +16,61 @@
                 <input class="col-md-5" type="number" id="maxPrice" name="maxPrice" placeholder="Cao" step="1" value="" />
                 <button class="btn btn-secondary col-md-12 mt-3" type="submit">Tìm</button>
                 <button class="btn btn-secondary col-md-12 mt-3" onclick="resetPrice()">Reset Giá</button>
-
-
             </div>
         </form>
     </div>
 
 
     <div class="col-md-10">
-
-
         <div id="carouselexamplecaptions" class="carousel col-md-12 row">
             <div class="carousel-inner row">
                 <div class="carousel-item active">
                     <div class="col-md-12 row m-5">
-                        @foreach (var item in Model.Take(15))
+                        @foreach (var item in Model.Take(20))
                         {
-                            <div class="col-md-2 mt-3 p-2 m-3 row bg-body-secondary">
-                                <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                                <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
-                                <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Price)0 đ</span>
-                                <a class="btn btn-outline-danger" style="max-width: 210px" href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)">đặt hàng</a>
+                            <div class="col-md-3 mt-4">
+                                <div class="card">
+                                    <img src="@Html.DisplayFor(modelitem => item.Image)" class="card-img-top" alt="alternate text" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                        <p class="card-text text-danger">@Html.DisplayFor(modelitem => item.Price)0 đ</p>
+                                        <a href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)" class="btn btn-danger btn-sm col-md-12">Đặt hàng</a>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="col-md-12 row m-auto">
-                        @foreach (var item in Model.Skip(15).Take(30))
+                        @foreach (var item in Model.Skip(20).Take(40))
                         {
-                            <div class="col-md-2 mt-3 p-2 m-3 row bg-body-secondary">
-                                <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                                <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
-                                <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Price)0 đ</span>
-                                <a class="btn btn-outline-danger" style="max-width: 210px" href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)">đặt hàng</a>
+                            <div class="col-md-3 mt-4">
+                                <div class="card">
+                                    <img src="@Html.DisplayFor(modelitem => item.Image)" class="card-img-top" alt="alternate text" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                        <p class="card-text text-danger">@Html.DisplayFor(modelitem => item.Price)0 đ</p>
+                                        <a href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)" class="btn btn-danger btn-sm col-md-12">Đặt hàng</a>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>
                 </div>
                 <div class="carousel-item bg-secondary">
                     <div class="col-md-12 bg-secondary row m-auto">
-                        @foreach (var item in Model.Skip(30).Take(45))
+                        @foreach (var item in Model.Skip(40).Take(60))
                         {
-                            <div class="col-md-2 mt-3 p-2 m-3 row bg-body-secondary">
-                                <img class="m-auto" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" width="220px" height="150px" />
-                                <a class="btn btn-danger-subtle text-left" style="max-width: 300px; min-height: 100px" href="#">@Html.DisplayFor(modelitem => item.Name)</a>
-                                <span class="text-right mb-2">@Html.DisplayFor(modelitem => item.Price)0 đ</span>
-                                <a class="btn btn-outline-danger" style="max-width: 210px" href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)">đặt hàng</a>
+                            <div class="col-md-3 mt-4">
+                                <div class="card">
+                                    <img src="@Html.DisplayFor(modelitem => item.Image)" class="card-img-top" alt="alternate text" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                        <p class="card-text text-danger">@Html.DisplayFor(modelitem => item.Price)0 đ</p>
+                                        <a href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)" class="btn btn-danger btn-sm col-md-12">Đặt hàng</a>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>
@@ -142,13 +150,9 @@
         var maxPriceInput = document.getElementById("maxPrice").value;
         var searchTermInput = document.getElementById("searchTerm").value;
 
-        // Perform the search based on the input values
-        // Replace the code below with your search logic
-
         var searchUrl = "@Url.Action("Search", "Product")";
         searchUrl += "?minPrice=" + minPriceInput + "&maxPrice=" + maxPriceInput + "&search=" + searchTermInput;
 
-        // Redirect to the search URL
         window.location.href = searchUrl;
     }
 

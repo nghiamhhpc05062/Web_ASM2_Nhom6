@@ -167,10 +167,12 @@ namespace Web_ASM_Nhom6.Controllers
                     }
                 }
 
-                return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "Sản phẩm đã được thêm thành công!";
+            return RedirectToAction("AdminProduct");
             }
 
-            return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "Sản phẩm đã được thêm thành công!";
+            return RedirectToAction("AdminProduct");
         }
 
 
@@ -232,7 +234,7 @@ namespace Web_ASM_Nhom6.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "API Error: " + response.ReasonPhrase);
-                    return View("Index", new List<Product>());
+                    return View("AdminProduct", new List<Product>());
                 }
             }
 
@@ -298,7 +300,8 @@ namespace Web_ASM_Nhom6.Controllers
                     HttpResponseMessage response = await httpClient.PutAsync($"{url}/{product.ProductId}", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        return RedirectToAction("Index");
+                        TempData["SuccessMessage"] = "Sản phẩm đã được sửa thành công!";
+                        return RedirectToAction("AdminProduct");
                     }
                     else
                     {

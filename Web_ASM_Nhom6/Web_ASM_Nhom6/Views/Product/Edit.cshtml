@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
-                <input asp-for="ProductId" class="form-control" />
+                <input asp-for="ProductId" class="form-control" readonly />
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -32,43 +32,39 @@
                 <span asp-validation-for="MenuId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="control-label"><strong>Tên Sản Phẩm</strong></label>
+                <input asp-for="Name" class="form-control" required />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <label asp-for="Description" class="control-label"><strong>Ghi Chú Sản Phẩm</strong></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" type="file" id="ImageFile" name="ImageFile" class="form-control" />
+                <label asp-for="Image" class="control-label"><strong>Hình Ảnh Sản Phẩm</strong></label>
+                <input asp-for="Image" type="file" id="ImageFile" name="ImageFile" class="form-control-file" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <label asp-for="Price" class="control-label"><strong>Giá Sản Phẩm</strong></label>
+                <div class="input-group">
+                    <input asp-for="Price" class="form-control" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">0 đ</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
+            <div class="form-group form-check" hidden>
+                <input class="form-check-input" asp-for="IsDelete" />
+                <label class="form-check-label" for="IsDelete">
+                    @Html.DisplayNameFor(model => model.IsDelete)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Lưu" class="btn btn-primary" id="saveBtn" />
+                <a class="btn btn-secondary" asp-action="AdminProduct">Quay lại</a>
             </div>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
