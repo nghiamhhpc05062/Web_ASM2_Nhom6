@@ -33,7 +33,7 @@
                                     <img src="@Html.DisplayFor(modelitem => item.Image)" class="card-img-top" alt="alternate text" style="height: 150px; object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
-                                        <p class="card-text text-danger">@item.Price.ToString("0,00#") VNĐ</p>
+                                        <p class="card-text text-danger">@item.Price.ToString("#,##0.000 VNĐ") VNĐ</p>
                                         <a href="Product/Information/@Html.DisplayFor(modelitem => item.ProductId)" class="btn btn-danger btn-sm col-md-12">Đặt hàng</a>
                                     </div>
                                 </div>

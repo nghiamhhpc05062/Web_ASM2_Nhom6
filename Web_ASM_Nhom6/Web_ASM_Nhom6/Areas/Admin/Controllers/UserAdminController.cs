@@ -84,8 +84,8 @@ namespace Web_ASM_Nhom6.Controllers
         }
 
         [HttpPost]
-        [Route("/User/SaveEdit")]
-        public async Task<IActionResult> SaveEdit(User user)
+        [Route("/User/SavEdit")]
+        public async Task<IActionResult> SavEdit(User user)
         {
             if (!ModelState.IsValid)
             {
