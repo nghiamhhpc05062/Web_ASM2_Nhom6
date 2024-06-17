@@ -36,11 +36,8 @@
         <p class="text-success">Thời gian hoạt động : 8:30 - 21:30 </p>
         <hr / class="border-3 bg-dark">
         <a href="@Url.Action("Add")" class="btn btn-primary"> + Thêm sản phẩm mới</a>
+        <a href="@Url.Action("AddMenu")" class="btn btn-primary"> + Thêm danh mục trong menu</a>
     </div>
-</div>
-
-<div class="container-fluid col-md-12">
-
 </div>
 
 <div class="container-fluid col-md-12 row">
@@ -66,7 +63,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Product ID</th>
-                            <th>Menu ID</th>
+                            <th>Danh mục trong menu</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -79,14 +76,14 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.MenuId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                                <td><img src="@Html.DisplayFor(modelItem => item.Image)" alt="Alternate Text" width="100px"/></td>
-                                <td>@Html.DisplayFor(modelItem => item.Price)0 đ</td>
-                                <td>@Html.DisplayFor(modelItem => item.IsDelete)</td>
-                                <td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.ProductId)</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.MenuId)</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td class="align-middle"><img src="@Html.DisplayFor(modelItem => item.Image)" alt="Alternate Text" width="100px" /></td>
+                                <td class="align-middle">@item.Price.ToString("0,00# VNĐ")</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.IsDelete)</td>
+                                <td class="align-middle">
                                     <div class="btn-group" role="group">
                                         <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary btn-sm">Edit</a>
                                     </div>

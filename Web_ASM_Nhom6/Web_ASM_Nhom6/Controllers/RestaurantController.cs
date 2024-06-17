@@ -68,7 +68,7 @@ namespace Web_ASM_Nhom6.Controllers
                     }
 
                     // Set the image URL
-                    restaurant.Image = "/iamge/" + fileName;
+                    restaurant.Image = "/image/" + fileName;
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace Web_ASM_Nhom6.Controllers
                                 Encoding.UTF8, "application/json");
                                 HttpResponseMessage responseUser = await httpClient.PutAsync($"{userAPI}/{SUser.User.UserId}", contentUser);
                                 TempData["SuccessMessage"] = "Chúc mừng, đăng ký thành công!";
-                                return RedirectToAction("Add");
+                                return RedirectToAction("AdminProduct", "Product");
                             }
                             else
                             {

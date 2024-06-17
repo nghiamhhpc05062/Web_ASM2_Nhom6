@@ -1,52 +1,53 @@
-﻿@model Web_ASM_Nhom6.Models.User
+﻿@model Web_ASM_Nhom6.Models.Order
 
 
 <div class="container bg-body-secondary col-md-6 m-auto p-3">
-    <h4 class="text-center mt-3">Sửa User</h4>
+    <h4 class="text-center mt-3">Sửa Đơn Hàng</h4>
     <hr />
     <div class="row">
         <div class="col-md-12">
             <form asp-action="SaveEdit" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
+                    <label asp-for="OrderId" class="control-label"></label>
+                    <input asp-for="OrderId" class="form-control" readonly />
+                    <span asp-validation-for="OrderId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="UserId" class="control-label"></label>
-                    <input asp-for="UserId" class="form-control" readonly/>
+                    <input asp-for="UserId" readonly class="form-control" required />
                     <span asp-validation-for="UserId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" required/>
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <label asp-for="OrderDate" class="control-label"></label>
+                    <input asp-for="OrderDate" class="form-control" required />
+                    <span asp-validation-for="OrderDate"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TotalAmount" class="control-label"></label>
+                    <input asp-for="TotalAmount" readonly class="form-control" required />
+                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" required />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Status" class="control-label"></label>
+                    <input asp-for="Status" class="form-control" required />
+                    <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" class="form-control" required />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label asp-for="PaymentMethod" class="control-label"></label>
+                    <input asp-for="PaymentMethod" class="form-control" required />
+                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Phone" class="control-label"></label>
-                    <input asp-for="Phone" class="form-control" required />
-                    <span asp-validation-for="Phone" class="text-danger"></span>
+                    <label asp-for="DeliveryPerson" class="control-label"></label>
+                    <input asp-for="DeliveryPerson" class="form-control" required />
+                    <span asp-validation-for="DeliveryPerson" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Address" class="control-label"></label>
-                    <input asp-for="Address" class="form-control" required />
-                    <span asp-validation-for="Address" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="role" class="control-label"></label>
-                    <input asp-for="role" class="form-control" required />
-                    <span asp-validation-for="role" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="IsDelete" /> @Html.DisplayNameFor(model => model.IsDelete)
-                    </label>
+                    <label asp-for="DeliveryStatus" class="control-label"></label>
+                    <input asp-for="DeliveryStatus" class="form-control" required />
+                    <span asp-validation-for="DeliveryStatus" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />

@@ -5,9 +5,9 @@
 }
 <div class="container">
     <h1 class="text-center">Quản lý Order</h1>
-    <p>
+@*  <p>
         <a class="btn btn-primary" asp-action="Create">Thêm mới</a>
-    </p>
+    </p> *@
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -55,7 +55,7 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.OrderId">Cập nhật thông tin User</a>
+                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.OrderId">Cập nhật Order</a>
                         </div>
                     </td>
                 </tr>

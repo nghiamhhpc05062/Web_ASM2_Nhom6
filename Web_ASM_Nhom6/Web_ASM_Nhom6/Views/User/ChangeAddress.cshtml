@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Đổi địa chỉ";
+}
+
+<div class="container">
+    <h2>Đổi Địa chỉ</h2>
+    <form asp-action="ChangeAddress" method="post">
+        <div class="mb-3">
+            <label for="Address" class="form-label">Nhập địa chỉ mới</label>
+            <input type="text" class="form-control" id="Address" name="Address" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Đổi địa chỉ</button>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        var changePass = '@ViewData["ChagePass"]';
+        if (changePass === "Null") {
+            Swal.fire({
+                title: "Đổi địa chỉ thất bại",
+                text: "Vui lòng nhập địa chỉ",
+                icon: "error",
+            });
+        } else if (changePass === "Succsess") {
+            Swal.fire({
+                title: "Đổi địa thành công",
+                text: "Địa của bạn đã được đổi",
+                icon: "success",
+            });
+        } else if (changePass === "NotSuccsess") {
+            Swal.fire({
+                title: "Đổi mật khẩu thất bại",
+                text: "Có lỗi vui lòng thử lại",
+                icon: "error",
+            });
+        }
+    });
+</script>

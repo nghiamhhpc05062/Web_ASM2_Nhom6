@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-9 mx-auto d-flex">
                     <a class="nav-link active text-white" aria-current="page" ng-show="isRestaurant" asp-action="AdminProduct" asp-controller="Product">Kênh Người Bán</a>
-                    <a class="nav-link active text-white" aria-current="page" asp-controller="Restaurant" asp-action="Add">Trở Thành Người Bán</a>
+                    <a class="nav-link active text-white" aria-current="page" ng-show="!isRestaurant" asp-controller="Restaurant" asp-action="Add">Trở Thành Người Bán</a>
                     <a class="nav-link active text-white" aria-current="page" href="#">Điều Khoản Dịch Vụ</a>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center align-items-center">

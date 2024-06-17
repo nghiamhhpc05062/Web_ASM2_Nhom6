@@ -24,7 +24,7 @@ namespace Web_ASM_Nhom6.Controllers
         private string urlCategory = "http://localhost:29015/api/Category";
         //trang chủ
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, string city)
         {
             List<Restaurant> restaurants = new List<Restaurant>();
 
@@ -52,6 +52,13 @@ namespace Web_ASM_Nhom6.Controllers
                             restaurant.Category = category;
                         }
                     }
+                }
+            }
+            if (!string.IsNullOrEmpty(search))
+            {
+                foreach (var keyword in search.Split(' '))
+                {
+                    restaurants = restaurants.Where(p => p.Address.ToLower().Contains(keyword.ToLower())).ToList();
                 }
             }
 

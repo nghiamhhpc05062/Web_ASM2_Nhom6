@@ -54,7 +54,15 @@
         </form>
     </div>
 </article>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script>
+    $(document).ready(function () {
+        var loginSuccess = '@TempData["LoginSuccess"]';
+        if (loginSuccess === "False") {
+            Swal.fire({
+                title: "Đăng ký thất bại",
+                text: "Email đã có trong hệ thống",
+                icon: "error",
+            });
+        }
+    });
+</script>

@@ -1,147 +1,160 @@
 @model IEnumerable<Web_ASM_Nhom6.Models.Restaurant>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <hr / class="text-danger mb-5 font-weight-bold">
-    <h2 class="text-danger mb-5 font-weight-bold">Tìm kiếm nhiều nhất </h2>
-    <div class="bg-body-secondary col-md-12 p-3 row">
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=canh chua">canh chua</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=thịt kho">thịt kho</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=cơm chiên">cơm chiên</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=gỏi cuốn">gỏi cuốn</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">bánh mì</a>
-        <a class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">bắp nướng</a>
+<div class="container bg-body-secondary">
+    <h2 class="text-danger font-weight-bold">
+        Tìm kiếm nhiều nhất
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+            <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15" />
+        </svg>
+    </h2>
+    <div class="col-md-12 p-3 row">
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=canh chua">Canh chua</a>
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=thịt kho">Thịt kho</a>
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=cơm chiên">Cơm chiên</a>
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=gỏi cuốn">Gỏi cuốn</a>
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">Bánh mì</a>
+        <a class="btn btn-outline-danger col-md-2 m-auto" style="font-size:15px; max-width:120px" href="/Product/?search=bánh mì">Bắp nướng</a>
     </div>
+</div>
 
-    <br />
-
-    <hr / class="border-4 bg-dark">
+<div class="container bg-body-secondary mt-5">
     <h2 class="text-danger mb-5 font-weight-bold">
-        Danh mục </h2>
-
-    <div class="bg-body-secondary col-md-12 p-1 row">
+        Danh mục
+    </h2>
+    <div class="col-md-12 p-1 row">
         @foreach (var item in Model.Take(5))
         {
-            <button class="btn btn-danger col-md-2 m-auto" style="font-size:15px; max-width:320px">
-                @Html.DisplayFor(modelitem => item.Category.Name)
+            <button class="btn btn-outline-danger col-md-2 m-auto">
+                <img src="@Html.DisplayFor(modelitem => item.Image)" alt="Alternate Text" width="100%" height="150px" />
             </button>
         }
     </div>
-
-
-    <br />
-
-    <hr / class="border-4 bg-dark">
-    <h2 class="text-danger mb-5 font-weight-bold">
-        Sản phẩm </h2>
-
-    <div class="bg-body-secondary col-md-12 p-3 row">
-
-        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
-            <button id="btngroupdroptp" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-                Thành phố
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="btngroupdroptp">
-                <li><a class="dropdown-item" href="#">cần thơ</a></li>
-                <li><a class="dropdown-item" href="#">hồ chí minh</a></li>
-                <li><a class="dropdown-item" href="#">đà nẵng</a></li>
-            </ul>
-        </div>
-
-        <div class="btn-group col-md-2 m-2" style="font-size:15px; max-width:200px" role="group">
-            <button id="btngroupdropphanloai" type="button" class="btn btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-                Phân loại
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="btngroupdropphanloai">
-                @foreach (var item in Model)
-                {
-                    <li><a class="dropdown-item" href="#">@Html.DisplayFor(modelitem => item.Category.Name)</a></li>
-                }
-            </ul>
-        </div>
-    </div>
-
-    <br />
-
-
-    <!--Restaurant-->
-
 </div>
 
 
-<div class="container-fluid">
-    <div id="carouselexamplecaptions" class="carousel col-md-12 row">
-        <div class="carousel-inner row">
-            <div class="carousel-item active">
-                <div class="col-md-12 row m-3">
-                    @foreach (var item in Model.Take(15))
-                    {
-                        <div class="col-md-2 mt-3 btn" href="">
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
-                                <div class="card-body">
-                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
-                                </div>
-                            </div>
+
+<div class="container bg-body-secondary p-3">
+    <h2 class="text-danger font-weight-bold mt-5">
+        Cửa hàng nổi bật
+    </h2>
+    <div class="container bg-body-secondary m-auto">
+        <div class="col-md-12 p-3 row">
+            <div class="col-md-12">
+                <form method="get" action="@Url.Action("Index", "Home")" onsubmit="saveFormValues(event)">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="search" name="search" placeholder="Tìm kiếm theo thành phố" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+                            <button class="btn btn-secondary" type="button" href="~/Home/Index">Đặt lại</button>
                         </div>
-                    }
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-12 row m-auto">
-                    @foreach (var item in Model.Skip(15).Take(30))
-                    {
-                        <div class="col-md-2 mt-3 btn" href="">
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
-                                <div class="card-body">
-                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="carousel-item bg-secondary">
-                <div class="col-md-12 bg-secondary row m-auto">
-                    @foreach (var item in Model.Skip(30).Take(45))
-                    {
-                        <div class="col-md-2 mt-3 btn" href="">
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
-                                <div class="card-body">
-                                    <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="carousel-item bg-secondary">
-            </div>
-            <div class="carousel-item bg-secondary">
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="carousel col-md-8 mt-3 m-auto">
-            <button class="carousel-control-prev bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">previous</span>
-            </button>
-            <div class="m-auto text-center">
-                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="slide 1">1</button>
-                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="1" aria-label="slide 2">2</button>
-                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="2" aria-label="slide 3">3</button>
-                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="3" aria-label="slide 4">4</button>
-                <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="4" aria-label="slide 5">5</button>
+        <div id="carouselexamplecaptions" class="carousel col-md-12 row">
+            <div class="carousel-inner row">
+                <div class="carousel-item active">
+                    <div class="col-md-12 row m-3">
+                        @foreach (var item in Model.Take(15))
+                        {
+                            <div class="col-md-3 mt-3 btn" href="">
+                                <div class="card bg-light">
+                                    <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <div class="card-body text-left bg-da">
+                                        <p class="card-title text-left font-weight-bold" style="min-height:1rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-shop-window" viewBox="0 0 16 16">
+                                            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5" />
+                                        </svg>
+                                        <span class="text-left">@Html.DisplayFor(modelitem => item.Address)</span>
+                                        <hr />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag-fill text-danger" viewBox="0 0 16 16">
+                                            <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                        </svg>
+                                        <span class="text-danger">Giảm đến 10%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-12 row m-auto">
+                        @foreach (var item in Model.Skip(15).Take(30))
+                        {
+                            <div class="col-md-2 mt-3 btn" href="">
+                                <div class="card bg-light">
+                                    <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="carousel-item bg-secondary">
+                    <div class="col-md-12 bg-secondary row m-auto">
+                        @foreach (var item in Model.Skip(30).Take(45))
+                        {
+                            <div class="col-md-2 mt-3 btn" href="">
+                                <div class="card bg-light">
+                                    <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Image)" alt="alternate text" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <p class="card-title text-left font-weight-bold" style="min-height:3rem">@Html.DisplayFor(modelitem => item.Name)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="carousel-item bg-secondary">
+                </div>
+                <div class="carousel-item bg-secondary">
+                </div>
             </div>
-            <button class="carousel-control-next bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">next</span>
-            </button>
-        </div>
 
+            <div class="carousel col-md-8 mt-3 m-auto">
+                <button class="carousel-control-prev bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">previous</span>
+                </button>
+                <div class="m-auto text-center">
+                    <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="slide 1">1</button>
+                    <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="1" aria-label="slide 2">2</button>
+                    <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="2" aria-label="slide 3">3</button>
+                    <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="3" aria-label="slide 4">4</button>
+                    <button class="border-0 m-2" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide-to="4" aria-label="slide 5">5</button>
+                </div>
+                <button class="carousel-control-next bg-danger" type="button" data-bs-target="#carouselexamplecaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">next</span>
+                </button>
+            </div>
+
+        </div>
     </div>
-</div>
+
+    <script>
+        function saveFormValues(event) {
+            event.preventDefault();
+
+            var searchInput = document.getElementById("search");
+
+            localStorage.setItem("searchValue", searchInput.value);
+
+            event.target.submit();
+        }
+        function setFormValues() {
+            var searchInput = document.getElementById("search");
+
+            var searchValue = localStorage.getItem("searchValue");
+
+            searchInput.value = searchValue;
+        }
+
+        setFormValues();
+    </script>

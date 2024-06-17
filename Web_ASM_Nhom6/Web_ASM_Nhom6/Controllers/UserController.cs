@@ -62,10 +62,38 @@ namespace Web_ASM_Nhom6.Controllers
                 }
             }
         }
-        [HttpGet]
         public IActionResult ChangeAddress()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeAddress(ChangeAddress AddressChange)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["ChagePass"] = "Null";
+                return View(AddressChange);
+            }
+
+            using (var httpClient = new HttpClient())
+            {
+                SUser.User.Address = AddressChange.Address;
+                var content = new StringContent(JsonConvert.SerializeObject(SUser.User), Encoding.UTF8, "application/json");
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var response = await httpClient.PutAsync($"{url}/{SUser.User.UserId}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewData["ChagePass"] = "Succsess";
+                    return RedirectToAction("Thongtin");
+                }
+                else
+                {
+                    ViewData["ChagePass"] = "NotSuccsess";
+                    return View(AddressChange);
+                }
+            }
         }
 
         public async Task<IActionResult> Histori()

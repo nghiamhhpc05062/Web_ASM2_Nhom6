@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Web_ASM_Nhom6.Models;
@@ -38,6 +39,7 @@ namespace Web_ASM_Nhom6.Controllers
                     products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
                 }
             }
+            products = products.Where(p => p.IsDelete == false).ToList();
 
             // Filter by search keyword
             if (!string.IsNullOrEmpty(search))
@@ -72,6 +74,7 @@ namespace Web_ASM_Nhom6.Controllers
             }
 
             List<Product> products = new List<Product>();
+            List<Menu> menus = new List<Menu>();
 
             using (var httpClient = new HttpClient())
             {
@@ -82,6 +85,8 @@ namespace Web_ASM_Nhom6.Controllers
                     products = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
                 }
             }
+
+            products = products.Where(p => p.IsDelete == false).ToList();
 
             // Filter by search keyword
             if (!string.IsNullOrEmpty(search))
@@ -105,8 +110,6 @@ namespace Web_ASM_Nhom6.Controllers
 
             return View(products);
         }
-
-
 
         //Add
         [HttpGet]
@@ -298,6 +301,31 @@ namespace Web_ASM_Nhom6.Controllers
             return View(getidproduct);
         }
 
+        //Menu
 
+        public IActionResult AddMenu()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMenu(Menu menu)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(menu),
+                Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PostAsync(urlmenu, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Danh mục đã được thêm vào menu!";
+                    return RedirectToAction("AdminProduct", "Product");
+                }
+            }
+            return View();
+        }
     }
 }
